@@ -23,7 +23,7 @@
   <!--Description-->
   
       <meta name="description" content="做的第一个APP叫《测量工具箱》，这个APP是我在快一个月的时候昨晚上架，一款工具类的APP，也是和别人合作做的，我负责一半功能的实现以及最后的整合。
-首先从功能上来说这个是整合的几个功能的APP，所以在整合别人功能的时候发现，在有storyboard的时代，将UI和功能代码分开写，再整合的时候，很">
+首先从功能上来说这个是整合的几个功能的APP，所以在整合别人功能的时候发现，在用storyboard的时候，将UI和功能代码分开写，再整合的时候，很">
   
 
   <!--Author-->
@@ -110,11 +110,11 @@
     <div class="post-page text-center my-4">
       <h1>阶段小结（一）</h1>
       <hr>
-      <span class="date">2018-03-13</span>
+      <span class="date">2017-08-16</span>
     </div>
 
     <p>做的第一个APP叫《测量工具箱》，这个APP是我在快一个月的时候昨晚上架，一款工具类的APP，也是和别人合作做的，我负责一半功能的实现以及<br>最后的整合。</p>
-<p>首先从功能上来说这个是整合的几个功能的APP，所以在整合别人功能的时候发现，在有storyboard的时代，将UI和功能代码分开写，再整合的时候，很简便，只需要根据情况适当的修改一点代码，就可以完成基本的整合，所以，我觉得这样写很好用。另外，在整合代码的时候，每个人的代码风格不一样，所以在看别人代码的时候，习惯别人的代码风格其实也不错，同时还可以收获很多东西，对自己的帮助还是挺大的。</p>
+<p>首先从功能上来说这个是整合的几个功能的APP，所以在整合别人功能的时候发现，在用storyboard的时候，将UI和功能代码分开写，再整合的时候，很简便，只需要根据情况适当的修改一点代码，就可以完成基本的整合，所以，我觉得这样写很好用。另外，在整合代码的时候，每个人的代码风格不一样，所以在看别人代码的时候，习惯别人的代码风格其实也不错，同时还可以收获很多东西，对自己的帮助还是挺大的。</p>
 <p>仔细回想起来，自己做完这个APP，非常难的点其实没有，就有一些转不过弯的一些东西需要记住。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">1、在做横屏功能的时候，如果没有特别的情况，做的时候就按横屏的做，很方便。</div><div class="line"></div><div class="line">2、开发中和给用户看到的效果，不一定是同一个，根据情况，偷偷做做弊，其实</div><div class="line">   可以让效果更简单。</div><div class="line"></div><div class="line">3、代码要在不出错的基础上，要写的安全，优化、简洁（代码是给别人看的！）。</div><div class="line"></div><div class="line">4、虽然现在大多都是用的ARC，但是，并不能完全保证内存不出问题。</div><div class="line"></div><div class="line">5、要替用户想，尽量适合并提高用户体验。</div><div class="line"></div><div class="line">6、找错的时候从出问题的地方打断点一级一级的向里面找，要相信自己。</div><div class="line"></div><div class="line">7、项目的需求要跟产品事先沟通清楚，特别是细节，一定要搞清楚细节之后在做。</div><div class="line"></div><div class="line">8、国际化语言的时候注意UI的适配。</div><div class="line"></div><div class="line">9、系统提供的好评接口适用于10.3以上。</div><div class="line"></div><div class="line">10、封装通用代码，注意安全。</div></pre></td></tr></table></figure>
 <p>项目中第一次接触相机权限，写下来，希望别人少踩点坑。</p>
@@ -122,7 +122,8 @@
 <p>另外，使用相机前，要获取相机的使用权限，在iOS10以后还需要在list文件中添加权限配置，不然程序会崩溃报错。</p>
 <p>一、UIImagePickerController</p>
 <p>1.跳转Controller实现两个协议UIImagePickerControllerDelegate和UINavigationControllerDelegate</p>
-<p>2.实例化，实现协议跳转<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">UIImagePickerController*pick = [[UIImagePickerControlleralloc]in</div><div class="line">it];</div><div class="line"></div><div class="line">pick.delegate=self;</div><div class="line"></div><div class="line">pick.sourceType=UIImagePickerControllerSourceTypeCamera;</div></pre></td></tr></table></figure></p>
+<p>2.实例化，实现协议跳转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">UIImagePickerController*pick = [[UIImagePickerControlleralloc]in</div><div class="line">it];</div><div class="line"></div><div class="line">pick.delegate=self;</div><div class="line"></div><div class="line">pick.sourceType=UIImagePickerControllerSourceTypeCamera;</div></pre></td></tr></table></figure>
 <p>想要相机全屏，用这个showsCameraControls设置成NO后相机的UI会被隐藏了，但是底部的工具栏会留下一个个黑块，解决办法是一个取巧的办法，CGAffineTransformMakeScale</p>
 <p><code>pick.showsCameraControls=NO;</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">但是这样就是放大的效果，有好有坏吧，不行就只能用自定义的了</div><div class="line"></div><div class="line">pick.cameraViewTransform=CGAffineTransformMakeScale(2,2);</div><div class="line"></div><div class="line">[selfpresentViewController:pickanimated:YEScompletion:^&#123;</div><div class="line"></div><div class="line">&#125;];</div></pre></td></tr></table></figure>

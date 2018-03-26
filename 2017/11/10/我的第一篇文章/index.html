@@ -22,7 +22,7 @@
 
   <!--Description-->
   
-      <meta name="description" content="这个博客从开始到搭建完成，大概历时一个月左右，综合使用了：hexo、github、netlify、freenom这四个平台。这四个平台，hexo是一款容易上手，并且高效的博客框架，github是一款主流的代码托管平台，freenom是国外的一个提供免费的域名申请的平台，netlify提供了自动生成静">
+      <meta name="description" content="这个博客从开始到搭建完成，大概历时一个月左右，综合使用了：Hexo、GitHub、Netlify、Freenom这四个平台。这四个平台，Hexo是一款容易上手，并且高效的博客框架。GitHub是一款主流的代码托管平台。Freenom是国外的一个提供免费的域名申请的平台。Netlify提供了自动生成静">
   
 
   <!--Author-->
@@ -112,21 +112,32 @@
       <span class="date">2017-11-10</span>
     </div>
 
-    <p>这个博客从开始到搭建完成，大概历时一个月左右，综合使用了：hexo、github、netlify、freenom这四个平台。<br>这四个平台，hexo是一款容易上手，并且高效的博客框架，github是一款主流的代码托管平台，freenom是国外的一个提供免费的域名申请的平台，netlify提供了自动生成静态的https网站，提供自带的DNS域名解析。所以，我们的流程是，先用hexo在本地搭建起来博客的框架，然后将本地的代码托管至github，然后将github的代码提交到netlify生成静态的https网站，然后在freenom申请自己喜欢的自定义域名，将netlify生成的域名替换为我们申请的域名，然后用nettify自带的DNS解析为自定义的域名加上https。<br>接下来我会慢慢一步一步重现我搭建的过程。<br>首先我们需要到<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">hexo</a>为本地搭建博客框架。<br>在安装hexo之前，我们需要在本地安装Node.js和Git,以MAC为例，在终端输入<br> <code>brew install git</code><br>安装git。<br>安装Node.js需要三步:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.curl https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line">2.wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line">3.nvm install stable</div></pre></td></tr></table></figure></p>
-<p>在安装这两个没问题后，再在终端输入<br><code>npm install -g hexo-cli</code><br>就可以成功安装hexo了。<br>接下来，我们要搭建hexo，这个也需要三步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.hexo init &lt;指定的文件夹&gt;</div><div class="line">2. cd &lt;指定的文件夹&gt;</div><div class="line">3. npm install</div></pre></td></tr></table></figure></p>
-<p>但这里，我们的hexo就搭建完成了，搭建完成后本地的具体的配置信息在这<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="external">这里</a>。<br>然后我们需要将我们本地的hexo代码提交到<a href="https://github.com/" target="_blank" rel="external">github</a>,此处省略怎么注册GitHub的账号，以及怎么建立一个Git的仓库。<br>在我们在git创建好后，我们现在将下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">type: git</div><div class="line">repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</div><div class="line">branch: master</div></pre></td></tr></table></figure></p>
+    <p>这个博客从开始到搭建完成，大概历时一个月左右，综合使用了：Hexo、GitHub、Netlify、Freenom这四个平台。<br>这四个平台，Hexo是一款容易上手，并且高效的博客框架。GitHub是一款主流的代码托管平台。Freenom是国外的一个提供免费的域名申请的平台。Netlify提供了自动生成静态的Https网站，提供自带的DNS域名解析。所以，我们的搭建流程是，先用Hexo在本地搭建起来博客的框架，然后将本地的代码托管至GitHub，然后将GitHub的代码提交到Netlify生成静态的Https网站，然后在Freenom申请自己喜欢的自定义域名，将Netlify生成的域名替换为我们申请的域名，然后用Nettify自带的DNS解析为自定义的域名加上Https。</p>
+<p>接下来我会慢慢一步一步重现我搭建的过程。</p>
+<p>首先我们需要到<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>为本地搭建博客框架。<br>在安装Hexo之前，我们需要在本地安装Node.js和Git,以MAC为例，在终端输入</p>
+<p> <code>brew install git</code></p>
+<p>安装Git。<br>安装Node.js需要三步:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.curl https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line">2.wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</div><div class="line">3.nvm install stable</div></pre></td></tr></table></figure>
+<p>在安装这两个没问题后，再在终端输入</p>
+<p><code>npm install -g hexo-cli</code></p>
+<p>就可以成功安装Hexo了。<br>接下来，我们要搭建Hexo，这个也需要三步：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1.hexo init &lt;指定的文件夹&gt;</div><div class="line">2. cd &lt;指定的文件夹&gt;</div><div class="line">3. npm install</div></pre></td></tr></table></figure>
+<p>到这里，我们的Hexo就搭建完成了，搭建完成后本地的具体的配置信息在这<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="external">这里</a>。<br>然后我们需要将我们本地的Hexo代码提交到<a href="https://github.com/" target="_blank" rel="external">GitHub</a>,此处省略怎么注册GitHub的账号，以及怎么建立一个Git的仓库。<br>在我们在Git创建好后，我们现在将下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">type: git</div><div class="line">repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</div><div class="line">branch: master</div></pre></td></tr></table></figure>
 <p>参考如下：</p>
 <p><img src="/images/个人博客搭建/1.png" alt="配置文件"></p>
-<p>这时，我们在终端进入Hexo的文件夹后再输入下面四条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.npm install hexo-deployer-git --save</div><div class="line">2.hexo clean</div><div class="line">3.hexo g</div><div class="line">4.hexo d</div></pre></td></tr></table></figure></p>
-<p>至此，我们完成了一半了，已经你的博客已经可以上线，可以访问了，但是，我们现在来点不一样的，已定义域名，以及添加Https。<br>接下来，我们去这里<a href="https://my.freenom.com/clientarea.php" target="_blank" rel="external">Freenom</a>，这个网站是支持中文的，可以调整为中文显示，一样，我们需要申请个账号，注意，这个网站需要翻墙才能进去。在我们注册完账号之后，我们可以在这里申请一个顶级的域名，是免费的，但是期限最长只有一年，后面需要自己再续期。在“Services“里面点击“Register a New Domain”跳转到域名申请页面，填写自己喜欢的域名，然后搜索出来的绿色的都是可以用的，跟购物一样，选择好域名后，在结算页面，期限选择一年，然后点击确定，在我们的邮箱里面确认后，我们就可以拥有这个域名了，在申请完域名后，可以在“My Domains”中找到我们刚刚申请的域名。<br>最后一步，把github上面的代码我们利用<a href="https://app.netlify.com/" target="_blank" rel="external">netlify</a>生成属于netlify的页面，首先，一样注册账号，可以选择用github的账号注册，按照提示一步一步的走，注册成功后，在主界面点击“New site from Git”生成新的Git页面,</p>
+<p>这时，我们在终端进入Hexo的文件夹后再输入下面四条命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1.npm install hexo-deployer-git --save</div><div class="line">2.hexo clean</div><div class="line">3.hexo g</div><div class="line">4.hexo d</div></pre></td></tr></table></figure>
+<p>至此，我们完成了一半了，已经你的博客已经可以上线，可以访问了，但是，我们现在来点不一样的，已定义域名，以及添加Https。<br>接下来，我们去这里<a href="https://my.freenom.com/clientarea.php" target="_blank" rel="external">Freenom</a>，这个网站是支持中文的，可以调整为中文显示，一样，我们需要申请个账号，注意，这个网站需要翻墙才能进去。在我们注册完账号之后，我们可以在这里申请一个顶级的域名，是免费的，但是期限最长只有一年，后面需要自己再续期。在“Services“里面点击“Register a New Domain”跳转到域名申请页面，填写自己喜欢的域名，然后搜索出来的绿色的都是可以用的，跟购物一样，选择好域名后，在结算页面，期限选择一年，然后点击确定，在我们的邮箱里面确认后，我们就可以拥有这个域名了。在申请完域名后，可以在“My Domains”中找到我们刚刚申请的域名。<br>最后一步，把github上面的代码我们利用<a href="https://app.netlify.com/" target="_blank" rel="external">Netlify</a>生成属于Netlify的页面，首先，一样注册账号，可以选择用GitHub的账号注册，按照提示一步一步的走，注册成功后，在主界面点击“New site from Git”生成新的Git页面,</p>
 <p><img src="/images/个人博客搭建/2.png" alt="第一步"></p>
-<p>根据提示一步一的来，我们选择下面的“github”,点击后需要获取我们GitHub的权限，点击确定。</p>
+<p>根据提示一步一的来，我们选择下面的“GitHub”,点击后需要获取我们GitHub的权限，点击确定。</p>
 <p><img src="/images/个人博客搭建/3.png" alt="第二步"></p>
 <p>这一步我们选择需要生成的分支，这里我们会看到我们托管到GitHub的Hexo的项目，选择这个，进入下一步。</p>
 <p><img src="/images/个人博客搭建/4.png" alt="第四步"></p>
-<p>这一步直接点确定进入下一步，等待系统生成页面就好了。<br>当生成页面后，我们基于Netlify的的博客页面就搭建好了，接下来我们换成自定义的域名。<br>我们先在本地的Hexo项目里面添加一个文件，在blog/source目录下，创建一个记事本文件，输入你的域名，对，只要写进你自己的域名即可。如果带有www，那么以后访问的时候必须带有www完整的域名才可以访问，但如果不带有www，以后访问的时候带不带www都可以访问。<br>然后在Netlify里面找到“Settings”,在里面点击左侧栏目的“Domain management”，在“Custom domains”中填写自己在Freenom中申请的域名。<br>再去到Freenom在自己的域名设置里面，找到“Nameservers”，将服务器的名称修改为如下：</p>
+<p>这一步直接点确定进入下一步，等待系统生成页面就好了。<br>当生成页面后，我们基于Netlify的的博客页面就搭建好了，这个时候是可以直接访问的，但是并不是我们的自定义域名，接下来我们换成自定义的域名。<br>我们先在本地的Hexo项目里面添加一个文件，在blog/source目录下，创建一个记事本文件，输入你的域名，对，只要写进你自己的域名即可。如果带有www，那么以后访问的时候必须带有www完整的域名才可以访问，但如果不带有www，以后访问的时候带不带www都可以访问。<br>然后在Netlify里面找到“Settings”,在里面点击左侧栏目的“Domain management”，在“Custom domains”中填写自己在Freenom中申请的域名。<br>再去到Freenom在自己的域名设置里面，找到“Nameservers”，将服务器的名称修改为如下：</p>
 <p><img src="/images/个人博客搭建/5.png" alt="服务器名称"></p>
-<p>然后等待一个小时左右服务器生效。<br>生效后，再在“Domain management”下面的“HTTPS”点击检测按钮，检测服务器是否配置成功，然后后面就很简单了，系统会自动生成DNS的域名解析，然后生成Https的证书，之后，大功告成，我们的博客页面就搭建完成了。</p>
+<p>然后等待一个小时左右服务器生效。<br>生效后，再在“Domain management”下面的“HTTPS”点击检测按钮，检测服务器是否配置成功，然后后面就很简单了，系统会自动生成DNS的域名解析，然后生成Https的证书。</p>
+<p>到此，大功告成，我们的博客页面就搭建完成了。</p>
 <p>PS：还有个小东西，在GitHub里面，我们托管的Hexo项目里面，找到设置页，GitHub也提供了自定义域名的功能，将我们刚刚申请的域名填入，这样，在访问你GitHub为域名的页面的时候，会自动跳转到你自定义域名的页面。</p>
 
 
