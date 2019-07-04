@@ -78,6 +78,6 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-type: git
-repo: git@github.com:as568381497/AX-hexo
-branch: master
+    type: git
+    repo: https://github.com/as568381497/AX-hexo
+    branch: gh-pages
