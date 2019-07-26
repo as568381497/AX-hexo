@@ -7,7 +7,7 @@
 
 
 
-<title>阶段小结（四） | AXI&amp;MM</title>
+<title>PyQt4坑集合（一） | AXI&amp;MM</title>
 
 
 
@@ -97,7 +97,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">阶段小结（四）</h1>
+            <h1 class="post-title">PyQt4坑集合（一）</h1>
             
                 <div class="post-meta">
                     
@@ -106,14 +106,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 6, 2019&nbsp;&nbsp;20:46:25</a>
+                        Date: <a href="#">July 26, 2019&nbsp;&nbsp;10:16:55</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/小结/">小结</a>
+                                <a href="/categories/PyQt4/">PyQt4</a>
                             
                         </span>
                     
@@ -122,9 +122,19 @@
         </header>
 
         <section class="post-content">
-            <p>历时大半年时间完成了HOOO小程序以及官网的开发，这一段时间算是对自己技术的另外一个升华吧，自此有了除去iOS以外的技能。其实刚开始的我是心存恐惧的，因为我是等于零基础上手并开发一个新的项目，我对我自己是没信心的，无奈只能一边学一边做，中间也经历了很多坑，不过结局还不错，总算完成了项目，现在项目也完全投入线上，正常运行了。</p>
-<p>说起来，有一部分原因是因为小程序还是国内的，所以文档内容看起来还是比较顺利，并且小程序提供的文档里面，基本能完成一些常规的展示和功能，遇到的难点都能解决掉，想想在这次小程序开发中，最大的收获不是有了小程序开发的能力，而是对自己的能力一种肯定，在对一个新技术的完成能力，对自己的自信又增强。</p>
-<p>后来又开发公司的官网，第一次正式接触web网页开发，其实，同样的，整个开发过程中最让我受益的并不是学习新语言，而是对web开发整个过程了解了，了解了响应式布局。</p>
+            <p>最近因为公司开发接触了PC端编程，开发语言选择的PyQt4,PyQt是用来创建GUI应用程序的工具包，它把Python和成功的Qt绑定在一起，下面是我在第一次开发中遇到的一些小坑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span><br></pre></td></tr></table></figure>
+
+<p>在某次做完UI文件后，执行转换，结果控制台一直输出<br>“check that you are using the latest veraion of PyQt and send an error report to ….”<br>开始也以为是版本问题，结果更新库什么的也没有用，后来发现别人说是UI文件里面不能有中文，我换了之后发现确实行了，但是在我后来的研究中发现，并不是中文，只是中文字体，文本为中文可以转换，但是加入中文字体就会转换出错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span><br></pre></td></tr></table></figure>
+
+<p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span><br></pre></td></tr></table></figure>
+
+<p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.python的中文加变量打印</span><br></pre></td></tr></table></figure>
+
+<p>printf(u’中文 %$’ % (变量字符))</p>
 
         </section>
 
@@ -139,7 +149,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/05/06/2019/阶段小结（四）/">http://axibreaking.ml/2019/05/06/2019/阶段小结（四）/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/07/26/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/PyQt4坑集合（一）/</a></span>
                     </p>
                 
                 
@@ -160,11 +170,9 @@
                     
                         <a href="/tags/技术/"># 技术</a>
                     
-                        <a href="/tags/总结/"># 总结</a>
+                        <a href="/tags/坑集合/"># 坑集合</a>
                     
-                        <a href="/tags/小程序/"># 小程序</a>
-                    
-                        <a href="/tags/前端/"># 前端</a>
+                        <a href="/tags/PyQt4/"># PyQt4</a>
                     
                         
                 </span>
@@ -177,10 +185,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/07/26/PyQt4坑集合（一）/">PyQt4坑集合（一）</a>
             
-            
-            <a class="next" rel="next" href="/2018/05/07/2018/关于HipHop/">关于HipHop</a>
+            <a class="next" rel="next" href="/2019/05/06/2019/阶段小结（四）/">阶段小结（四）</a>
             
         </section>
 
