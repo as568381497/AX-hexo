@@ -131,10 +131,14 @@
 <p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span><br></pre></td></tr></table></figure>
 
-<p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件)</p>
+<p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件),后来实验发现，有的JPG图片能显示，有的不能显示，试验了下，猜想可能是跟图片的是否打开alpha通道有关</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.python的中文加变量打印</span><br></pre></td></tr></table></figure>
 
 <p>printf(u’中文 %$’ % (变量字符))</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.python的中文加变量转为字符串</span><br></pre></td></tr></table></figure>
+
+<p>“这是中文{}{}”.format(变量1,变量2)</p>
+<p>这么做的好处是，可以将变量及中文在内存中真正的转换为一块内存地址，不会额外开销</p>
 
         </section>
 
@@ -149,7 +153,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/07/26/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/PyQt4坑集合（一）/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/</a></span>
                     </p>
                 
                 
@@ -170,9 +174,9 @@
                     
                         <a href="/tags/技术/"># 技术</a>
                     
-                        <a href="/tags/坑集合/"># 坑集合</a>
-                    
                         <a href="/tags/PyQt4/"># PyQt4</a>
+                    
+                        <a href="/tags/坑集合/"># 坑集合</a>
                     
                         
                 </span>
@@ -184,6 +188,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/08/06/2019/PyQt4之网络请求及图片加载/">PyQt4之网络请求及图片加载</a>
             
             
             <a class="next" rel="next" href="/2019/05/06/2019/阶段小结（四）/">阶段小结（四）</a>
