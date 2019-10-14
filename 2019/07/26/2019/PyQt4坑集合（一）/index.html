@@ -94,6 +94,13 @@
             <div class="container">
     
     
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><span class="toc-text">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><span class="toc-text">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><span class="toc-text">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的中文加变量打印"><span class="toc-text">4.python的中文加变量打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的中文加变量转为字符串"><span class="toc-text">5.python的中文加变量转为字符串</span></a></li></ol>
+            </div>
+        </div>
+    
     
     <article class="post-wrap">
         <header class="post-header">
@@ -123,21 +130,11 @@
 
         <section class="post-content">
             <p>最近因为公司开发接触了PC端编程，开发语言选择的PyQt4,PyQt是用来创建GUI应用程序的工具包，它把Python和成功的Qt绑定在一起，下面是我在第一次开发中遇到的一些小坑。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span><br></pre></td></tr></table></figure>
-
-<p>在某次做完UI文件后，执行转换，结果控制台一直输出<br>“check that you are using the latest veraion of PyQt and send an error report to ….”<br>开始也以为是版本问题，结果更新库什么的也没有用，后来发现别人说是UI文件里面不能有中文，我换了之后发现确实行了，但是在我后来的研究中发现，并不是中文，只是中文字体，文本为中文可以转换，但是加入中文字体就会转换出错。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span><br></pre></td></tr></table></figure>
-
-<p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span><br></pre></td></tr></table></figure>
-
-<p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件),后来实验发现，有的JPG图片能显示，有的不能显示，试验了下，猜想可能是跟图片的是否打开alpha通道有关</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.python的中文加变量打印</span><br></pre></td></tr></table></figure>
-
-<p>printf(u’中文 %$’ % (变量字符))</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.python的中文加变量转为字符串</span><br></pre></td></tr></table></figure>
-
-<p>“这是中文{}{}”.format(变量1,变量2)</p>
+<h3 id="1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><a href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体" class="headerlink" title="1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"></a>1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</h3><p>在某次做完UI文件后，执行转换，结果控制台一直输出<br>“check that you are using the latest veraion of PyQt and send an error report to ….”<br>开始也以为是版本问题，结果更新库什么的也没有用，后来发现别人说是UI文件里面不能有中文，我换了之后发现确实行了，但是在我后来的研究中发现，并不是中文，只是中文字体，文本为中文可以转换，但是加入中文字体就会转换出错。</p>
+<h3 id="2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><a href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去" class="headerlink" title="2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"></a>2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</h3><p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
+<h3 id="3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><a href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片" class="headerlink" title="3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片"></a>3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</h3><p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件),后来实验发现，有的JPG图片能显示，有的不能显示，试验了下，猜想可能是跟图片的是否打开alpha通道有关</p>
+<h3 id="4-python的中文加变量打印"><a href="#4-python的中文加变量打印" class="headerlink" title="4.python的中文加变量打印"></a>4.python的中文加变量打印</h3><p>printf(u’中文 %$’ % (变量字符))</p>
+<h3 id="5-python的中文加变量转为字符串"><a href="#5-python的中文加变量转为字符串" class="headerlink" title="5.python的中文加变量转为字符串"></a>5.python的中文加变量转为字符串</h3><p>“这是中文{}{}”.format(变量1,变量2)</p>
 <p>这么做的好处是，可以将变量及中文在内存中真正的转换为一块内存地址，不会额外开销</p>
 
         </section>

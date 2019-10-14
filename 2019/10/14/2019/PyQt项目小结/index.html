@@ -7,7 +7,7 @@
 
 
 
-<title>PyQt4之网络请求及图片加载 | AXI&amp;MM</title>
+<title>阶段小结（五） | AXI&amp;MM</title>
 
 
 
@@ -97,7 +97,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">PyQt4之网络请求及图片加载</h1>
+            <h1 class="post-title">阶段小结（五）</h1>
             
                 <div class="post-meta">
                     
@@ -106,14 +106,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 6, 2019&nbsp;&nbsp;10:22:53</a>
+                        Date: <a href="#">October 14, 2019&nbsp;&nbsp;15:58:26</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/PyQt4/">PyQt4</a>
+                                <a href="/categories/小结/">小结</a>
                             
                         </span>
                     
@@ -122,12 +122,16 @@
         </header>
 
         <section class="post-content">
-            <p>之前在网上找了很久关于PyQt网络及图片下载方面的资料，结果发现，网上基本没有，而且PyQt本身是不支持网络图片加载的，具体实现还是需要将l网络图片下载到本地，然后显示，但是并不是所有的图片都能显示的，所以只好自己封账一个来用了。</p>
-<p>里面包括了：<br>1.PyQt4的一般的GET和POST的网络请求，我自己给他加上了请求完成的回调。<br>2.直接传入控件，及网络图片的地址，就可以显示网上的图片的，加载服务器图片也搞定。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目前优点:</span><br><span class="line">是网络请求(图片下载)到请求完成(显示完成)一步搞定</span><br><span class="line"></span><br><span class="line">目前缺点是:</span><br><span class="line">因为都是使用的是同步，所以会阻碍程序，异步显示，PyQt不许与直接调用主线程刷新UI，等我后续优化。</span><br></pre></td></tr></table></figure>
+            <p>最近刚刚结束手头的一段项目，过来写一段小结。</p>
+<p>最近结束的是一个系统的第一期，PyQt这边是做的类似于PS类型的专注于图像显示的一个客户端，从接触PyQt开始学习到第一期项目完成，耗时两个月左右，做完有点不敢相信自己竟然做完了，emmmmm</p>
+<p>整体来说因为有其他语言的基础接触python和PyQt来使用不难，当然这是后面做完了回顾，做的时候，因为不知道语言特性，许多地方都耗时了很久，但是，就是一个很小的地方，不知道系统的设定是什么样子，只能一边找资料一点自己尝试，所幸，最后还是做完了。</p>
+<p>做完后的感觉就是，自己多会了两门技能，至少说能用了，再看到不是什么都不知道，python这边，算是入了门，基础部分已经全部学完，以后可以尝试写写爬虫什么的，PyQt这边，解锁了自己PC端开发到打包到打安装包的技能，整个开发的流程，及语言特性环境，全部知道和熟悉了，以后再接收相关的，速度应该能提升很多。</p>
+<p>都说百路相通，确实是，现在再结合python想想之前的JS，OC，其实很多东西都相同，感觉吧之前的很多东西突然间也想通了。</p>
+<p>对了，涉及到图像，就多了很多计算的内容，虽然不难，但是我觉得我要好好再补一补了，数学d里面的很多东西还是要学的，用起来真好用。</p>
+<p>再来一次的话，应该可以把自己做的东西更加的优化下，封装的东西更加的独立，好用。</p>
+<p>还要肯定自己，自己的思路是没问题的，而且，很多东西其实自己能做到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">努力成为自己希望成为的人</span><br></pre></td></tr></table></figure>
 
-<p>下面是Git上的地址</p>
-<p><a href="https://github.com/as568381497/CXPyQt4HTTP" target="_blank" rel="noopener">这是地址</a></p>
 
         </section>
 
@@ -142,7 +146,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/08/06/2019/PyQt4之网络请求及图片加载/">http://axibreaking.ml/2019/08/06/2019/PyQt4之网络请求及图片加载/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/10/14/2019/PyQt项目小结/">http://axibreaking.ml/2019/10/14/2019/PyQt项目小结/</a></span>
                     </p>
                 
                 
@@ -163,7 +167,7 @@
                     
                         <a href="/tags/技术/"># 技术</a>
                     
-                        <a href="/tags/PyQt4/"># PyQt4</a>
+                        <a href="/tags/总结/"># 总结</a>
                     
                         
                 </span>
@@ -176,10 +180,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/10/14/2019/PyQt项目小结/">阶段小结（五）</a>
+                <a class="prev" rel="prev" href="/2019/10/14/2019/PyQt4坑集合（二）/">PyQt4坑(特性)集合（二）</a>
             
             
-            <a class="next" rel="next" href="/2019/07/26/2019/PyQt4坑集合（一）/">PyQt4坑集合（一）</a>
+            <a class="next" rel="next" href="/2019/08/06/2019/PyQt4之网络请求及图片加载/">PyQt4之网络请求及图片加载</a>
             
         </section>
 
