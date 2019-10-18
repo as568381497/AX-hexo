@@ -7,7 +7,7 @@
 
 
 
-<title>PyQt4坑集合（一） | AXI&amp;MM</title>
+<title>PyQt之分离多线程 | AXI&amp;MM</title>
 
 
 
@@ -97,14 +97,14 @@
         <div id="post-toc" class="post-toc">
             <span class="post-toc-title">catalogue</span>
             <div class="post-toc-content">
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><span class="toc-text">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><span class="toc-text">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><span class="toc-text">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的中文加变量打印"><span class="toc-text">4.python的中文加变量打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的中文加变量转为字符串"><span class="toc-text">5.python的中文加变量转为字符串</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建线程类"><span class="toc-text">1.创建线程类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-实现需要任务"><span class="toc-text">2.实现需要任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-实现收到信号后实现的方法"><span class="toc-text">3.实现收到信号后实现的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在需要创建子线程处理任务的地方创建类"><span class="toc-text">4.在需要创建子线程处理任务的地方创建类</span></a></li></ol>
             </div>
         </div>
     
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">PyQt4坑集合（一）</h1>
+            <h1 class="post-title">PyQt之分离多线程</h1>
             
                 <div class="post-meta">
                     
@@ -113,7 +113,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 26, 2019&nbsp;&nbsp;10:16:55</a>
+                        Date: <a href="#">October 15, 2019&nbsp;&nbsp;15:08:14</a>
                         </span>
                     
                     
@@ -129,13 +129,20 @@
         </header>
 
         <section class="post-content">
-            <p>最近因为公司开发接触了PC端编程，开发语言选择的PyQt4,PyQt是用来创建GUI应用程序的工具包，它把Python和成功的Qt绑定在一起，下面是我在第一次开发中遇到的一些小坑。</p>
-<h3 id="1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><a href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体" class="headerlink" title="1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"></a>1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</h3><p>在某次做完UI文件后，执行转换，结果控制台一直输出<br>“check that you are using the latest veraion of PyQt and send an error report to ….”<br>开始也以为是版本问题，结果更新库什么的也没有用，后来发现别人说是UI文件里面不能有中文，我换了之后发现确实行了，但是在我后来的研究中发现，并不是中文，只是中文字体，文本为中文可以转换，但是加入中文字体就会转换出错。</p>
-<h3 id="2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><a href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去" class="headerlink" title="2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"></a>2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</h3><p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
-<h3 id="3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><a href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片" class="headerlink" title="3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片"></a>3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</h3><p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件),后来实验发现，有的JPG图片能显示，有的不能显示，试验了下，猜想可能是跟图片的是否打开alpha通道有关</p>
-<h3 id="4-python的中文加变量打印"><a href="#4-python的中文加变量打印" class="headerlink" title="4.python的中文加变量打印"></a>4.python的中文加变量打印</h3><p>printf(u’中文 %$’ % (变量字符))</p>
-<h3 id="5-python的中文加变量转为字符串"><a href="#5-python的中文加变量转为字符串" class="headerlink" title="5.python的中文加变量转为字符串"></a>5.python的中文加变量转为字符串</h3><p>“这是中文{}{}”.format(变量1,变量2)</p>
-<p>这么做的好处是，可以将变量及中文在内存中真正的转换为一块内存地址，不会额外开销</p>
+            <p>PyQt中实现多线程处理任务，本文单独创建新的多线程类处理任务</p>
+<h3 id="1-创建线程类"><a href="#1-创建线程类" class="headerlink" title="1.创建线程类"></a>1.创建线程类</h3><p>继承“QThread类”创建自己的线程类，在类中添加回传的信号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class MyThread(QtCore,QThread):</span><br><span class="line">    trigger = QtCore.pyqtSignal(int)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-实现需要任务"><a href="#2-实现需要任务" class="headerlink" title="2.实现需要任务"></a>2.实现需要任务</h3><p>在自己的线程类中，实现“run”方法，在方法中写需要多线程处理的任务，然后使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.trigger.emit(int)//发送信号并传出的参数</span><br></pre></td></tr></table></figure>
+
+<p>来发送信号以调用其他方法来刷新UI等操作</p>
+<h3 id="3-实现收到信号后实现的方法"><a href="#3-实现收到信号后实现的方法" class="headerlink" title="3.实现收到信号后实现的方法"></a>3.实现收到信号后实现的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//收到信号后实现的方法，这里收到信号后也是子线程调用处理</span><br><span class="line">def fation(self, int):</span><br><span class="line">    //具体实现</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-在需要创建子线程处理任务的地方创建类"><a href="#4-在需要创建子线程处理任务的地方创建类" class="headerlink" title="4.在需要创建子线程处理任务的地方创建类"></a>4.在需要创建子线程处理任务的地方创建类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//创建类并指定接收到信号时实现方法</span><br><span class="line">thred = MyThread()</span><br><span class="line">//绑定收到信号后实现方法</span><br><span class="line">thred.trigger.connect(self.fation)</span><br><span class="line">//启动子线程</span><br><span class="line">thred.staet()</span><br></pre></td></tr></table></figure>
+
+<p>最后分享一个我自己简单封装的异步请求类</p>
+<p><a href="https://github.com/as568381497/CXPyQt4HTTP" target="_blank" rel="noopener">这个是地址</a></p>
 
         </section>
 
@@ -150,7 +157,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/10/15/2019/PyQt之分离多线程/">http://axibreaking.ml/2019/10/15/2019/PyQt之分离多线程/</a></span>
                     </p>
                 
                 
@@ -173,8 +180,6 @@
                     
                         <a href="/tags/PyQt4/"># PyQt4</a>
                     
-                        <a href="/tags/坑集合/"># 坑集合</a>
-                    
                         
                 </span>
             </div>
@@ -186,10 +191,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/08/06/2019/PyQt4之网络请求及图片加载/">PyQt4之网络请求及图片加载</a>
             
-            
-            <a class="next" rel="next" href="/2019/05/06/2019/阶段小结（四）/">阶段小结（四）</a>
+            <a class="next" rel="next" href="/2019/10/14/2019/PyQt4坑集合（二）/">PyQt4坑(特性)集合（二）</a>
             
         </section>
 
