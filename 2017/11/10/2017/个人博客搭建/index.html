@@ -146,7 +146,7 @@
 
 <p>到这里，我们的Hexo就搭建完成了，搭建完成后本地的具体的配置信息在这这里。</p>
 <h2 id="将下一步将我们的Hexo与GitHub关联起来"><a href="#将下一步将我们的Hexo与GitHub关联起来" class="headerlink" title="将下一步将我们的Hexo与GitHub关联起来"></a>将下一步将我们的Hexo与GitHub关联起来</h2><p>我们需要将我们本地的Hexo代码提交到GitHub,此处省略怎么注册GitHub的账号，以及怎么建立一个Git的仓库。<br>在我们在Git创建好后，我们现在将下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git</span><br><span class="line">    repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"><span class="built_in">type</span>: git</span><br><span class="line">repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
 
 <p>参考如下：</p>
 <p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/1.png" alt="配置文件"></p>
