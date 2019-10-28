@@ -7,7 +7,7 @@
 
 
 
-<title>Hello World | AXI&amp;MM</title>
+<title>PyQt之分离多线程 | AXI&amp;MM</title>
 
 
 
@@ -94,10 +94,17 @@
             <div class="container">
     
     
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建线程类"><span class="toc-text">1.创建线程类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-实现需要任务"><span class="toc-text">2.实现需要任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-实现收到信号后实现的方法"><span class="toc-text">3.实现收到信号后实现的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在需要创建子线程处理任务的地方创建类"><span class="toc-text">4.在需要创建子线程处理任务的地方创建类</span></a></li></ol>
+            </div>
+        </div>
+    
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">PyQt之分离多线程</h1>
             
                 <div class="post-meta">
                     
@@ -106,14 +113,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 23, 2017&nbsp;&nbsp;20:46:25</a>
+                        Date: <a href="#">October 15, 2019&nbsp;&nbsp;15:08:14</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/其他技术/">其他技术</a>
+                                <a href="/categories/PyQt4/">PyQt4</a>
                             
                         </span>
                     
@@ -122,7 +129,20 @@
         </header>
 
         <section class="post-content">
-            <p>关于这个博客，是我自己突然想做的，一方面觉得弄个博客很有意思，也算对自己的一个挑战，另外一方面，算是个给自己找了一个属于自己的空间，以后这上面会陆续放上自己写的一些东西，希望可以保存的。<br>从自己最开始摸索博客是什么，到整个博客的框架搭建成功，大概历时了一个多月吧，中间转转折折弄了很多，坑也踩过了许多，想着之后把搭建过程中踩过的坑写出来，也算是一个心得分享了。<br>以后这里面的内容会慢慢完善，加入一些功能，少量的，我喜欢简洁一点的，至于文章，我会放上我的日常，还有技术分享以及一些心得体会，暂时就这样了。</p>
+            <p>PyQt中实现多线程处理任务，本文单独创建新的多线程类处理任务</p>
+<h3 id="1-创建线程类"><a href="#1-创建线程类" class="headerlink" title="1.创建线程类"></a>1.创建线程类</h3><p>继承“QThread类”创建自己的线程类，在类中添加回传的信号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class MyThread(QtCore,QThread):</span><br><span class="line">    trigger = QtCore.pyqtSignal(int)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-实现需要任务"><a href="#2-实现需要任务" class="headerlink" title="2.实现需要任务"></a>2.实现需要任务</h3><p>在自己的线程类中，实现“run”方法，在方法中写需要多线程处理的任务，然后使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.trigger.emit(int)//发送信号并传出的参数</span><br></pre></td></tr></table></figure>
+
+<p>来发送信号以调用其他方法来刷新UI等操作</p>
+<h3 id="3-实现收到信号后实现的方法"><a href="#3-实现收到信号后实现的方法" class="headerlink" title="3.实现收到信号后实现的方法"></a>3.实现收到信号后实现的方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//收到信号后实现的方法，这里收到信号后也是子线程调用处理</span><br><span class="line">def fation(self, int):</span><br><span class="line">    //具体实现</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-在需要创建子线程处理任务的地方创建类"><a href="#4-在需要创建子线程处理任务的地方创建类" class="headerlink" title="4.在需要创建子线程处理任务的地方创建类"></a>4.在需要创建子线程处理任务的地方创建类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//创建类并指定接收到信号时实现方法</span><br><span class="line">thred = MyThread()</span><br><span class="line">//绑定收到信号后实现方法</span><br><span class="line">thred.trigger.connect(self.fation)</span><br><span class="line">//启动子线程</span><br><span class="line">thred.staet()</span><br></pre></td></tr></table></figure>
+
+<p>最后分享一个我自己简单封装的异步请求类</p>
+<p><a href="https://github.com/as568381497/CXPyQt4HTTP" target="_blank" rel="noopener">这个是地址</a></p>
 
         </section>
 
@@ -137,7 +157,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2017/10/23/2017/Hello World/">http://axibreaking.ml/2017/10/23/2017/Hello World/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/10/15/2019/PyQt之分离多线程/">http://axibreaking.ml/2019/10/15/2019/PyQt之分离多线程/</a></span>
                     </p>
                 
                 
@@ -156,7 +176,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/其他/"># 其他</a>
+                        <a href="/tags/技术/"># 技术</a>
+                    
+                        <a href="/tags/PyQt4/"># PyQt4</a>
                     
                         
                 </span>
@@ -169,10 +191,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2017/11/10/2017/个人博客搭建/">个人博客搭建</a>
+                <a class="prev" rel="prev" href="/2019/10/28/2019/py文件打包/">py文件打包及web打开本地程序</a>
             
             
-            <a class="next" rel="next" href="/2017/09/02/2017/阶段小结（二）/">阶段小结（二）</a>
+            <a class="next" rel="next" href="/2019/10/14/2019/PyQt4坑集合（二）/">PyQt4坑(特性)集合（二）</a>
             
         </section>
 
