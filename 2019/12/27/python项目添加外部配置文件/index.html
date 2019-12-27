@@ -7,7 +7,7 @@
 
 
 
-<title>Hello World | AXI</title>
+<title>python项目添加外部配置文件 | AXI</title>
 
 
 
@@ -94,10 +94,17 @@
             <div class="container">
     
     
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-设置外部文件"><span class="toc-text">1.设置外部文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-获取信息"><span class="toc-text">2.获取信息</span></a></li></ol>
+            </div>
+        </div>
+    
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">python项目添加外部配置文件</h1>
             
                 <div class="post-meta">
                     
@@ -106,7 +113,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">October 23, 2017&nbsp;&nbsp;20:46:25</a>
+                        Date: <a href="#">December 27, 2019&nbsp;&nbsp;14:31:40</a>
                         </span>
                     
                     
@@ -115,6 +122,8 @@
                             
                                 <a href="/categories/其他技术/">其他技术</a>
                             
+                                <a href="/categories/其他技术/Python/">Python</a>
+                            
                         </span>
                     
                 </div>
@@ -122,7 +131,14 @@
         </header>
 
         <section class="post-content">
-            <p>关于这个博客，是我自己突然想做的，一方面觉得弄个博客很有意思，也算对自己的一个挑战，另外一方面，算是个给自己找了一个属于自己的空间，以后这上面会陆续放上自己写的一些东西，希望可以保存的。<br>从自己最开始摸索博客是什么，到整个博客的框架搭建成功，大概历时了一个多月吧，中间转转折折弄了很多，坑也踩过了许多，想着之后把搭建过程中踩过的坑写出来，也算是一个心得分享了。<br>以后这里面的内容会慢慢完善，加入一些功能，少量的，我喜欢简洁一点的，至于文章，我会放上我的日常，还有技术分享以及一些心得体会，暂时就这样了。</p>
+            <p>之前项目中需要再外部改一些项目的参数，于是需要配置下项目的外部参数文件，自己在网上找了总结下。</p>
+<p>总的来说其实就两步</p>
+<h3 id="1-设置外部文件"><a href="#1-设置外部文件" class="headerlink" title="1.设置外部文件"></a>1.设置外部文件</h3><p>外部文件的后缀名是“ini”，比如现在我设置一个名为defaule.ini的外部文件，文件内容是key-value的键值对，但是注意，这里是分层的，具体内容为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这里是baseconf层</span><br><span class="line">[baseconf]</span><br><span class="line">name=axi</span><br><span class="line">[changeName]</span><br><span class="line">changeName=xiaoxi</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-获取信息"><a href="#2-获取信息" class="headerlink" title="2.获取信息"></a>2.获取信息</h3><p>外部文件设置好后，就可以进行获取了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//导入文件</span><br><span class="line">import ConfigParser</span><br><span class="line">//创建上下文</span><br><span class="line">cf = ConfigParser.ConfigParser()</span><br><span class="line">//读取文件</span><br><span class="line">cf.read(&quot;default.ini&quot;)</span><br><span class="line">//获取值</span><br><span class="line">print cf.get(&apos;baseconf&apos;,&apos;name&apos;)</span><br></pre></td></tr></table></figure>
+
 
         </section>
 
@@ -137,7 +153,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2017/10/23/2017/Hello World/">http://axibreaking.ml/2017/10/23/2017/Hello World/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/12/27/python项目添加外部配置文件/">http://axibreaking.ml/2019/12/27/python项目添加外部配置文件/</a></span>
                     </p>
                 
                 
@@ -156,6 +172,8 @@
                 <span class="tag">
                     
                     
+                        <a href="/tags/技术/"># 技术</a>
+                    
                         <a href="/tags/其他/"># 其他</a>
                     
                         
@@ -169,10 +187,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2017/11/10/2017/个人博客搭建/">个人博客搭建</a>
             
-            
-            <a class="next" rel="next" href="/2017/09/02/2017/阶段小结（二）/">阶段小结（二）</a>
+            <a class="next" rel="next" href="/2019/12/26/DICOM文件使用/">在python中的DICOM文件简单使用</a>
             
         </section>
 

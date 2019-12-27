@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>在python中的DICOM文件简单使用 | AXI</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简介"><span class="toc-text">1.简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-具体实现"><span class="toc-text">2.具体实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#①-获取DICOM文件信息"><span class="toc-text">① 获取DICOM文件信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#②-取出文件信息"><span class="toc-text">② 取出文件信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#③-显示图像"><span class="toc-text">③ 显示图像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#④-取出jpg图像"><span class="toc-text">④ 取出jpg图像</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">在python中的DICOM文件简单使用</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 26, 2019&nbsp;&nbsp;15:27:59</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/其他技术/">其他技术</a>
+                            
+                                <a href="/categories/其他技术/Python/">Python</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <section class="post-content">
+            <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h3><p>因为之前的项目所以对DICOMd文件有所接触，关于DICOM，这个DICOM是：</p>
+<p>DICOM（Digital Imaging and Communications in Medicine）即医学数字成像和通信，是医学图像和相关信息的国际标准（ISO 12052）。它定义了质量能满足临床需要的可用于数据交换的医学图像格式。</p>
+<p>以上是我在百度复制过来的</p>
+<p>而这个DICOM文件了，就是用于医疗数字的特殊格式的文件，这个文件里面包含了一张图像和关于这个图像的很多其他的信息，这些信息是一种特殊的格式保存，每一条信息都有一个tag相对应，这个tag可以是一串字符串也可以是一个矩阵坐标。</p>
+<p>每一个DICOM文件所包含的信息都不是相同的，我的意思是说文件信息的key，不是文件信息的value值，也就是A文件可能有“名称”这个信息，但是B文件可能就没有。</p>
+<h3 id="2-具体实现"><a href="#2-具体实现" class="headerlink" title="2.具体实现"></a>2.具体实现</h3><p>在python中使用的方式为，需要使用四个库：<br>第一个是处理DICOM文件的库 — pydicom；<br>第二个库是美国国家医学图书馆写的一个很厉害的库叫 — SimplleITK；<br>第三个是用来显示DICOM文件图像的库 — matplotlib；<br>第四个是用来保存图片的 — scipy.misc</p>
+<h4 id="①-获取DICOM文件信息"><a href="#①-获取DICOM文件信息" class="headerlink" title="① 获取DICOM文件信息"></a>① 获取DICOM文件信息</h4><p>获取文件信息就一句话</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//inPath为DICOM文件路径</span><br><span class="line">dsData = pydicom.read_file(inPath)</span><br></pre></td></tr></table></figure>
+
+<h4 id="②-取出文件信息"><a href="#②-取出文件信息" class="headerlink" title="② 取出文件信息"></a>② 取出文件信息</h4><p>在经过上面获取文件的一步后，我们可以用两种方式取出文件里面包含的DICOM信息</p>
+<p>第一种：<br>            直接按key读取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//在上面一步的基础上</span><br><span class="line"></span><br><span class="line">//这里已经可以打印出文件里面的信息了</span><br><span class="line">print dsData</span><br><span class="line"></span><br><span class="line">//比如有一个key值为PixelSpacing的值,按下方的取法就可以取出对应的值</span><br><span class="line">print daData.PixelSpacing</span><br></pre></td></tr></table></figure>
+
+<p>第二种：<br>            按矩阵坐标取值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//在上面一步的基础上</span><br><span class="line"></span><br><span class="line">//比如有一个矩阵为 [0016,1151]的值 ,按下方的取法就可以取出对应的值，注意是16位进制</span><br><span class="line">print daData[0x00161151].value</span><br></pre></td></tr></table></figure>
+
+<h4 id="③-显示图像"><a href="#③-显示图像" class="headerlink" title="③ 显示图像"></a>③ 显示图像</h4><p>显示图像就需要用到matplotlib这个库了，在引入后，直接用以下代码显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//引入库</span><br><span class="line">import matplotlib</span><br><span class="line"></span><br><span class="line">//显示DICOM文件的二维矩阵（pixel_array是一个二维矩阵）</span><br><span class="line">matplotlib.plt.imshow(dsData.pixel_array)</span><br></pre></td></tr></table></figure>
+
+<h4 id="④-取出jpg图像"><a href="#④-取出jpg图像" class="headerlink" title="④ 取出jpg图像"></a>④ 取出jpg图像</h4><p>在这里有两点要注意：一个是，要取出jpg图像，其实本质是将DICOM里面的图像转换为jpg图像，所以需要找一个地方存放jpg图片的缓存；第二个是这里需要用到SimplleITK这个库，其实pydicom<br>也是可以转换的，但是它不能转换压缩过后的DICOM文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//inPath是DICOM文件的输入路径，outPath是jpg文件的输出路径</span><br><span class="line">def initImageCache(inPath, outPath)</span><br><span class="line">    //读取DICOM文件</span><br><span class="line">    ds = SimplleITK.ReadImage(inPath)</span><br><span class="line">    //读取文件图像矩阵信息</span><br><span class="line">    data = SimplleITK.GetArrayFromImage(ds)[0]</span><br><span class="line">    //输出jpg</span><br><span class="line">    scipy.misc.imsave(outPath, data)</span><br></pre></td></tr></table></figure>
+
+
+        </section>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2019/12/26/DICOM文件使用/">http://axibreaking.ml/2019/12/26/DICOM文件使用/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/技术/"># 技术</a>
+                    
+                        <a href="/tags/其他/"># 其他</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/12/27/python项目添加外部配置文件/">python项目添加外部配置文件</a>
+            
+            
+            <a class="next" rel="next" href="/2019/12/26/递归的正确使用方式/">递归的正确使用方式</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+</html>
