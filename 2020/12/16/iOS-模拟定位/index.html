@@ -11,7 +11,7 @@
 
 
 
-<title>PyQt4坑集合（一） | AXIHOME</title>
+<title>iOS 探索——模拟定位 | AXIHOME</title>
 
 
 
@@ -172,7 +172,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">PyQt4坑集合（一）</h1>
+            <h1 class="post-title">iOS 探索——模拟定位</h1>
             
                 <div class="post-meta">
                     
@@ -181,14 +181,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">July 26, 2019&nbsp;&nbsp;10:16:55</a>
+                        Date: <a href="#">December 16, 2020&nbsp;&nbsp;14:19:32</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/PyQt4/">PyQt4</a>
+                                <a href="/categories/iOS/">iOS</a>
                             
                         </span>
                     
@@ -197,13 +197,21 @@
         </header>
 
         <div class="post-content">
-            <p>最近因为公司开发接触了PC端编程，开发语言选择的PyQt4,PyQt是用来创建GUI应用程序的工具包，它把Python和成功的Qt绑定在一起，下面是我在第一次开发中遇到的一些小坑。</p>
-<h3 id="1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><a href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体" class="headerlink" title="1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"></a>1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</h3><p>在某次做完UI文件后，执行转换，结果控制台一直输出<br>“check that you are using the latest veraion of PyQt and send an error report to ….”<br>开始也以为是版本问题，结果更新库什么的也没有用，后来发现别人说是UI文件里面不能有中文，我换了之后发现确实行了，但是在我后来的研究中发现，并不是中文，只是中文字体，文本为中文可以转换，但是加入中文字体就会转换出错。</p>
-<h3 id="2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><a href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去" class="headerlink" title="2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"></a>2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</h3><p>UI文件中使用的图片在UI文件中可以正常显示，但是当UI文件转换为PY文件后需要将资源文件也转换PY文件并impory导入后才能在PY文件中正常显示（在PyCharmIDE下，导入为灰色不用管）</p>
-<h3 id="3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><a href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片" class="headerlink" title="3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片"></a>3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</h3><p>在py文件中，样式中使用图片，是不支持jpg的图片需要换成png的图片才能正常显示(pixmap属性可以支持jpg文件),后来实验发现，有的JPG图片能显示，有的不能显示，试验了下，猜想可能是跟图片的是否打开alpha通道有关</p>
-<h3 id="4-python的中文加变量打印"><a href="#4-python的中文加变量打印" class="headerlink" title="4.python的中文加变量打印"></a>4.python的中文加变量打印</h3><p>printf(u’中文 %$’ % (变量字符))</p>
-<h3 id="5-python的中文加变量转为字符串"><a href="#5-python的中文加变量转为字符串" class="headerlink" title="5.python的中文加变量转为字符串"></a>5.python的中文加变量转为字符串</h3><p>“这是中文{}{}”.format(变量1,变量2)</p>
-<p>这么做的好处是，可以将变量及中文在内存中真正的转换为一块内存地址，不会额外开销</p>
+            <p>最近在研究iOS的模拟定位，这里总结下我最近的研究心得。</p>
+<h2 id="1-NSProxy（我骗了我自己）"><a href="#1-NSProxy（我骗了我自己）" class="headerlink" title="1.NSProxy（我骗了我自己）"></a>1.NSProxy（我骗了我自己）</h2><p>最开始研究这个东西的时候，在网上看到一篇文章，<a href="https://zhuanlan.zhihu.com/p/93145872" target="_blank" rel="noopener">（地址在这）</a>,这个博主在里面用了一个方法，主要的理论就是，利用iOS里面NSProxy，这个类，在手机获取到用户定位，回调返回数据的时候，从中间插入你自己写的方法，来修改定位获取到的值，总的来说，这个方法，在某些场景还是可以用一下的，比如，虽然用户定位了位置，但是，获取到的位置，还是你想给他定位的位置，虽然我也不知道有啥用，实际上直接在代码层面修改值就好了，但是我们还是可以再来看看这个类，NSProxy。<br>NSProxy：一个抽象的超类，并且是不继承自NSObject的。可以通过它的API为其它的Object对象或者不存在的对象提供替身。<br>一个很有趣的类，主要的存在是为了，解决NSTimer、CADisplayLink等循环引用的内存问题。</p>
+<p>然而，这个博主所说的这个方法并不能实现模拟定位的效果，虽然按照他的那个方法，定位获取到的值，确实是修改了，但是，是在手机获取到你的实际定位之后，在数据返回给你的时候，插入的你自己实现的方法，所以实际上定位是没修改到的，只能是——我骗了我自己。</p>
+<h2 id="2-探索"><a href="#2-探索" class="headerlink" title="2.探索"></a>2.探索</h2><p>在网上翻了翻后，发现网上对这个功能实现的提及极少，所以当时网上也没找到能用的资料，所以是有点灰心的，因为完全没方向，不知道怎么去做，但是，突然想起来，xcode自带的那个模拟定位的，是确实可以实现定位的，自己试了下。</p>
+<p>1.打开xcode，连接手机<br>2.设置证书，选择手机启动<br>3.选择头部菜单栏 Debug ——&gt; Simulate Loaction ——&gt; 选择自己需要定位的地址</p>
+<p>这里都是预置的一些地址，你也可以改成自己的想要定位到的其他地方，不过你需要创建一个后缀为gpx的文件，跟创建普通iOS文件 一样的，只是后缀不一样，在里面默认会已经把模版写好了，你直接改经纬度的值就好了，简不简单，然后，在”Simulate Loaction”里面选择的时候，选择自己的刚刚创建的文件就好了。</p>
+<p>这样操作后，你再换其他软件定位，你就可以看到，你的定位地址被改变了，这里确确实实是改变了。</p>
+<h2 id="3-研究模拟定位"><a href="#3-研究模拟定位" class="headerlink" title="3.研究模拟定位"></a>3.研究模拟定位</h2><p>当按照上面操作后，我就知道，如果要做这个功能，按照xcode里面那样肯定是可以的，只是现在要研究下xcoe里面是怎么修改定位的，改变方向后，在一个博主下面找到个这个<a href="https://www.secrss.com/articles/5630" target="_blank" rel="noopener">（地址在这）</a>。<br>在这个博主的文章里面，找到了，关键的两个东西，一个是xcode里面是可以做模拟定位的，而且不需要越狱，第二个，要实现模拟定位，实际上iOS内部已经有了，你只需要开启这个服务，这个服务的名字就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.apple.dt.simulatelocation</span><br></pre></td></tr></table></figure>
+
+<p>苹果在Xcode6、iOS8.0开始提供了一个为设备模拟GPS位置的调试功能，其原理是通过usb获取设备句柄后开启设备内的服务(“com.apple.dt.simulatelocation”)再通过固定坐标或GPX文件进行位置模拟。</p>
+<p>在这里，就可以知道，这个方法就是xcode里面模拟器使用的方法，具体的实现步骤就是</p>
+<p>1.手机连接外设<br>2.通过外设获取手机句柄开启“com.apple.dt.simulatelocation”服务<br>3.更改坐标。</p>
+<p>到这里，其实离我想的还差一点，我是想直接在手机内部做一个APP，实现模拟定位的功能，但是，目前看来，是不怎么容易的。<br>这样想起来，之前看到的其他软件做这个功能的时候，不越狱，实际上也是刚刚这个步骤。</p>
+<p>至于开启服务的方式：<br><a href="https://juejin.cn/post/6844903975624376333" target="_blank" rel="noopener">在这</a>。</p>
 
         </div>
 
@@ -218,7 +226,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/</a></span>
+                        <span><a href="http://axibreaking.ml/2020/12/16/iOS-模拟定位/">http://axibreaking.ml/2020/12/16/iOS-模拟定位/</a></span>
                     </p>
                 
                 
@@ -242,11 +250,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/技术/"># 技术</a>
-                    
-                        <a href="/tags/PyQt4/"># PyQt4</a>
-                    
-                        <a href="/tags/坑集合/"># 坑集合</a>
+                        <a href="/tags/iOS/"># iOS</a>
                     
                         
                 </span>
@@ -259,10 +263,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/08/06/2019/PyQt4之网络请求及图片加载/">PyQt4之网络请求及图片加载</a>
             
-            
-            <a class="next" rel="next" href="/2019/05/06/2019/阶段小结（四）/">阶段小结（四）</a>
+            <a class="next" rel="next" href="/2020/09/30/WEB端接入阿里多人音视频通信/">WEB端接入阿里多人音视频通信</a>
             
         </section>
 
