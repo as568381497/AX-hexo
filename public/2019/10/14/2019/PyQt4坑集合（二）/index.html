@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang>
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <meta name="author" content="Chen Xin">
 
 
-<title>PyQt4坑(特性)集合（二） | AXI&amp;MM</title>
 
 
 
-    <link rel="icon" href="/favicon.png">
+<title>PyQt4坑(特性)集合（二） | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
 
 
 
@@ -27,6 +31,15 @@
     
     <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
 
 
 </head>
@@ -35,7 +48,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -49,7 +62,6 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
-
         </div>
     </nav>
 
@@ -58,7 +70,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -94,13 +106,69 @@
             <div class="container">
     
     
-        <div id="post-toc" class="post-toc">
-            <span class="post-toc-title">catalogue</span>
-            <div class="post-toc-content">
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Label-控件中-给图片样式的显示方式"><span class="toc-text">1.Label 控件中 给图片样式的显示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Label-图片的加载"><span class="toc-text">2.Label 图片的加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-控件的边框显示"><span class="toc-text">3.控件的边框显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-获取屏幕大小"><span class="toc-text">4.获取屏幕大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-子控件需要实现父控件paintEvent绘图方法才能显示图片"><span class="toc-text">5.子控件需要实现父控件paintEvent绘图方法才能显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"><span class="toc-text">6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"><span class="toc-text">7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><span class="toc-text">8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</span></a></li></ol>
-            </div>
-        </div>
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
     
+
     
     <article class="post-wrap">
         <header class="post-header">
@@ -128,7 +196,7 @@
             
         </header>
 
-        <section class="post-content">
+        <div class="post-content">
             <p>最近开发中遇到的PyQt的坑，写出来，分享下</p>
 <h3 id="1-Label-控件中-给图片样式的显示方式"><a href="#1-Label-控件中-给图片样式的显示方式" class="headerlink" title="1.Label 控件中 给图片样式的显示方式"></a>1.Label 控件中 给图片样式的显示方式</h3><p>Background-image：显示方式  原始图片显示   不裁剪<br>Border-image：显示方式  拉伸  完整显示<br>image:显示方式 原始图片 最合适比例显示 </p>
 <h3 id="2-Label-图片的加载"><a href="#2-Label-图片的加载" class="headerlink" title="2.Label 图片的加载"></a>2.Label 图片的加载</h3><p>png：png图片显示可以使用样式或者pixmap（跟jpg加载一样）显示，但是需要先把图片加载为py文件</p>
@@ -149,7 +217,7 @@
 <h3 id="8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><a href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数" class="headerlink" title="8.在“main”函数里面可以获取软件存在的路径及外部传入的参数"></a>8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.argv[0]//软件打开路径</span><br><span class="line">sys.arvg[1]//外部传入参数</span><br></pre></td></tr></table></figure>
 
 
-        </section>
+        </div>
 
         
             <section class="post-copyright">
@@ -171,6 +239,11 @@
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
                 
 
             </section>
@@ -212,9 +285,10 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
+
     </div>
 </body>
 </html>

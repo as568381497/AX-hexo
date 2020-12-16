@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>iOS 探索——模拟定位 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">iOS 探索——模拟定位</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 16, 2020&nbsp;&nbsp;14:19:32</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/iOS/">iOS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>最近在研究iOS的模拟定位，这里总结下我最近的研究心得。</p>
+<h2 id="1-NSProxy（我骗了我自己）"><a href="#1-NSProxy（我骗了我自己）" class="headerlink" title="1.NSProxy（我骗了我自己）"></a>1.NSProxy（我骗了我自己）</h2><p>最开始研究这个东西的时候，在网上看到一篇文章，<a href="https://zhuanlan.zhihu.com/p/93145872" target="_blank" rel="noopener">（地址在这）</a>,这个博主在里面用了一个方法，主要的理论就是，利用iOS里面NSProxy，这个类，在手机获取到用户定位，回调返回数据的时候，从中间插入你自己写的方法，来修改定位获取到的值，总的来说，这个方法，在某些场景还是可以用一下的，比如，虽然用户定位了位置，但是，获取到的位置，还是你想给他定位的位置，虽然我也不知道有啥用，实际上直接在代码层面修改值就好了，但是我们还是可以再来看看这个类，NSProxy。<br>NSProxy：一个抽象的超类，并且是不继承自NSObject的。可以通过它的API为其它的Object对象或者不存在的对象提供替身。<br>一个很有趣的类，主要的存在是为了，解决NSTimer、CADisplayLink等循环引用的内存问题。</p>
+<p>然而，这个博主所说的这个方法并不能实现模拟定位的效果，虽然按照他的那个方法，定位获取到的值，确实是修改了，但是，是在手机获取到你的实际定位之后，在数据返回给你的时候，插入的你自己实现的方法，所以实际上定位是没修改到的，只能是——我骗了我自己。</p>
+<h2 id="2-探索"><a href="#2-探索" class="headerlink" title="2.探索"></a>2.探索</h2><p>在网上翻了翻后，发现网上对这个功能实现的提及极少，所以当时网上也没找到能用的资料，所以是有点灰心的，因为完全没方向，不知道怎么去做，但是，突然想起来，xcode自带的那个模拟定位的，是确实可以实现定位的，自己试了下。</p>
+<p>1.打开xcode，连接手机<br>2.设置证书，选择手机启动<br>3.选择头部菜单栏 Debug ——&gt; Simulate Loaction ——&gt; 选择自己需要定位的地址</p>
+<p>这里都是预置的一些地址，你也可以改成自己的想要定位到的其他地方，不过你需要创建一个后缀为gpx的文件，跟创建普通iOS文件 一样的，只是后缀不一样，在里面默认会已经把模版写好了，你直接改经纬度的值就好了，简不简单，然后，在”Simulate Loaction”里面选择的时候，选择自己的刚刚创建的文件就好了。</p>
+<p>这样操作后，你再换其他软件定位，你就可以看到，你的定位地址被改变了，这里确确实实是改变了。</p>
+<h2 id="3-研究模拟定位"><a href="#3-研究模拟定位" class="headerlink" title="3.研究模拟定位"></a>3.研究模拟定位</h2><p>当按照上面操作后，我就知道，如果要做这个功能，按照xcode里面那样肯定是可以的，只是现在要研究下xcoe里面是怎么修改定位的，改变方向后，在一个博主下面找到个这个<a href="https://www.secrss.com/articles/5630" target="_blank" rel="noopener">（地址在这）</a>。<br>在这个博主的文章里面，找到了，关键的两个东西，一个是xcode里面是可以做模拟定位的，而且不需要越狱，第二个，要实现模拟定位，实际上iOS内部已经有了，你只需要开启这个服务，这个服务的名字就是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.apple.dt.simulatelocation</span><br></pre></td></tr></table></figure>
+
+<p>苹果在Xcode6、iOS8.0开始提供了一个为设备模拟GPS位置的调试功能，其原理是通过usb获取设备句柄后开启设备内的服务(“com.apple.dt.simulatelocation”)再通过固定坐标或GPX文件进行位置模拟。</p>
+<p>在这里，就可以知道，这个方法就是xcode里面模拟器使用的方法，具体的实现步骤就是</p>
+<p>1.手机连接外设<br>2.通过外设获取手机句柄开启“com.apple.dt.simulatelocation”服务<br>3.更改坐标。</p>
+<p>到这里，其实离我想的还差一点，我是想直接在手机内部做一个APP，实现模拟定位的功能，但是，目前看来，是不怎么容易的。<br>这样想起来，之前看到的其他软件做这个功能的时候，不越狱，实际上也是刚刚这个步骤。</p>
+<p>至于开启服务的方式：<br><a href="https://juejin.cn/post/6844903975624376333" target="_blank" rel="noopener">在这</a>。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2020/12/16/iOS-模拟定位/">http://axibreaking.ml/2020/12/16/iOS-模拟定位/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/iOS/"># iOS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/09/30/WEB端接入阿里多人音视频通信/">WEB端接入阿里多人音视频通信</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
