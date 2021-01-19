@@ -11,7 +11,7 @@
 
 
 
-<title>iOS 探索——模拟定位 | AXIHOME</title>
+<title>关于健身 | AXIHOME</title>
 
 
 
@@ -172,7 +172,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">iOS 探索——模拟定位</h1>
+            <h1 class="post-title">关于健身</h1>
             
                 <div class="post-meta">
                     
@@ -181,14 +181,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">December 16, 2020&nbsp;&nbsp;14:19:32</a>
+                        Date: <a href="#">April 20, 2018&nbsp;&nbsp;20:46:25</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/iOS/">iOS</a>
+                                <a href="/categories/随笔/">随笔</a>
                             
                         </span>
                     
@@ -197,21 +197,20 @@
         </header>
 
         <div class="post-content">
-            <p>最近在研究iOS的模拟定位，这里总结下我最近的研究心得。</p>
-<h2 id="1-NSProxy（我骗了我自己）"><a href="#1-NSProxy（我骗了我自己）" class="headerlink" title="1.NSProxy（我骗了我自己）"></a>1.NSProxy（我骗了我自己）</h2><p>最开始研究这个东西的时候，在网上看到一篇文章，<a href="https://zhuanlan.zhihu.com/p/93145872" target="_blank" rel="noopener">（地址在这）</a>,这个博主在里面用了一个方法，主要的理论就是，利用iOS里面NSProxy，这个类，在手机获取到用户定位，回调返回数据的时候，从中间插入你自己写的方法，来修改定位获取到的值，总的来说，这个方法，在某些场景还是可以用一下的，比如，虽然用户定位了位置，但是，获取到的位置，还是你想给他定位的位置，虽然我也不知道有啥用，实际上直接在代码层面修改值就好了，但是我们还是可以再来看看这个类，NSProxy。<br>NSProxy：一个抽象的超类，并且是不继承自NSObject的。可以通过它的API为其它的Object对象或者不存在的对象提供替身。<br>一个很有趣的类，主要的存在是为了，解决NSTimer、CADisplayLink等循环引用的内存问题。</p>
-<p>然而，这个博主所说的这个方法并不能实现模拟定位的效果，虽然按照他的那个方法，定位获取到的值，确实是修改了，但是，是在手机获取到你的实际定位之后，在数据返回给你的时候，插入的你自己实现的方法，所以实际上定位是没修改到的，只能是——我骗了我自己。</p>
-<h2 id="2-探索"><a href="#2-探索" class="headerlink" title="2.探索"></a>2.探索</h2><p>在网上翻了翻后，发现网上对这个功能实现的提及极少，所以当时网上也没找到能用的资料，所以是有点灰心的，因为完全没方向，不知道怎么去做，但是，突然想起来，xcode自带的那个模拟定位的，是确实可以实现定位的，自己试了下。</p>
-<p>1.打开xcode，连接手机<br>2.设置证书，选择手机启动<br>3.选择头部菜单栏 Debug ——&gt; Simulate Loaction ——&gt; 选择自己需要定位的地址</p>
-<p>这里都是预置的一些地址，你也可以改成自己的想要定位到的其他地方，不过你需要创建一个后缀为gpx的文件，跟创建普通iOS文件 一样的，只是后缀不一样，在里面默认会已经把模版写好了，你直接改经纬度的值就好了，简不简单，然后，在”Simulate Loaction”里面选择的时候，选择自己的刚刚创建的文件就好了。</p>
-<p>这样操作后，你再换其他软件定位，你就可以看到，你的定位地址被改变了，这里确确实实是改变了。</p>
-<h2 id="3-研究模拟定位"><a href="#3-研究模拟定位" class="headerlink" title="3.研究模拟定位"></a>3.研究模拟定位</h2><p>当按照上面操作后，我就知道，如果要做这个功能，按照xcode里面那样肯定是可以的，只是现在要研究下xcoe里面是怎么修改定位的，改变方向后，在一个博主下面找到个这个<a href="https://www.secrss.com/articles/5630" target="_blank" rel="noopener">（地址在这）</a>。<br>在这个博主的文章里面，找到了，关键的两个东西，一个是xcode里面是可以做模拟定位的，而且不需要越狱，第二个，要实现模拟定位，实际上iOS内部已经有了，你只需要开启这个服务，这个服务的名字就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.apple.dt.simulatelocation</span><br></pre></td></tr></table></figure>
+            <p>关于健身，之前是我一个朋友要我写一下，但是我想的是我一个只是喜欢健身的人，给不了别人什么意见，网上有很多大神可以请教，没我什么事情，但是后来看在网上说的一些误区，就想着写一下写一下有些基础的心得分享，就只是一些关于健身的知识分享。</p>
+<p>说到健身，为什么要健身。其实，我觉得普通人健身的目的，或者说作用，就两个，一个是想要一个好的身材，不管是男生还是女生，另外一个是想要一个好的身体素质，这也是我的但是决定健身的想法。特别是我现在做的工作，我觉得我需要有一个好的身体才行。</p>
+<p>其实，当你决定健身之后，坚持健身下来，你会发现，带来的好处不止这两个，工作累的时候，或者说压抑的时候，需要发泄，而运动，我认为是不二之选，既能锻炼身体，又能发泄放松，何乐而不为。还有你坚持健身下来，你会发现自己的状态会很不一样，其中包括了自信和自律。</p>
+<h2 id="关于健身的方法，总结就："><a href="#关于健身的方法，总结就：" class="headerlink" title="关于健身的方法，总结就："></a>关于健身的方法，总结就：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">控制饮食+制定锻炼计划+坚持+坚持+坚持。</span><br></pre></td></tr></table></figure>
 
-<p>苹果在Xcode6、iOS8.0开始提供了一个为设备模拟GPS位置的调试功能，其原理是通过usb获取设备句柄后开启设备内的服务(“com.apple.dt.simulatelocation”)再通过固定坐标或GPX文件进行位置模拟。</p>
-<p>在这里，就可以知道，这个方法就是xcode里面模拟器使用的方法，具体的实现步骤就是</p>
-<p>1.手机连接外设<br>2.通过外设获取手机句柄开启“com.apple.dt.simulatelocation”服务<br>3.更改坐标。</p>
-<p>到这里，其实离我想的还差一点，我是想直接在手机内部做一个APP，实现模拟定位的功能，但是，目前看来，是不怎么容易的。<br>这样想起来，之前看到的其他软件做这个功能的时候，不越狱，实际上也是刚刚这个步骤。</p>
-<p>至于开启服务的方式：<br><a href="https://juejin.cn/post/6844903975624376333" target="_blank" rel="noopener">在这</a>。</p>
+<p>既然决定健身了，就还是适当的控制饮食，这个控制饮食不是叫你不吃东西。看你自己的健身计划是什么，增肌或者是减脂，目标不同，饮食也会不同，以我自己为例，我当时是减脂，增肌只是额外目标，所以，油炸、碳酸、饼干、甜食之类的我就没有再吃过了，网上有一种说法是保持少食多餐，就是说一天可以不必要是三餐是，可以是四餐或者五餐，但是每餐吃少量食物。我不喜欢那个，所以我的做法是，早餐正常，最好中午多吃一点，八分饱，下午少吃。</p>
+<h2 id="说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区："><a href="#说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区：" class="headerlink" title="说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区："></a>说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、首先减肥没有局部减肥，你不管怎么运动都是全身消耗脂肪的，锻炼倒是有局部锻炼。</span><br><span class="line">2、减肥不是只做有氧运动才能减肥，有效的减肥是无氧+有氧结合。</span><br><span class="line">3、长时间不练肌肉会变成肥肉，事实是肌肉会因为不锻练而萎缩变小，脂肪会因为摄入</span><br><span class="line">大于消耗而堆积。</span><br><span class="line">4、女生没那么容易长肌肉，荷尔蒙在哪，除非你打激素。</span><br><span class="line">综上所述，我建议锻炼的方法是先无氧再有氧再无氧，这样锻炼。</span><br></pre></td></tr></table></figure>
+
+<p>原因是，在我们开始锻炼的时候，身体首先消耗的不是我们的脂肪能量，而是另外的能量，做无氧首先很快的消耗掉这部分的能量，再去做有氧运动，这样就直接开始消耗脂肪的能量了，最后，再去做无氧，身体在疲惫的情况下，再做无氧运动效果更好，线条也更容易练的更好看。</p>
+<p>我当时目标主要是减脂，所以我当时的锻炼方法是，首先是热身加拉伸，让身体活动开，然后是力量锻炼8分钟左右，也就两组动作，然后是跑步至少半个小时以上，然后是体能锻炼40分钟左右，然后是力量锻炼半个小时，最后是拉伸，结束。</p>
+<p>这个是我大三时候每天去健身房坚持的事情，除了力量和体能锻炼的方法和部位不同，其他都是雷打不动的一样。</p>
+<p>关于蛋白粉，网上的说法有好有坏，我的态度是持中立，不好也不坏吧，不过我是不喜欢吃的，还是吃饭好。</p>
+<h2 id="最后，再给一点福利，纠正两个误区，如下："><a href="#最后，再给一点福利，纠正两个误区，如下：" class="headerlink" title="最后，再给一点福利，纠正两个误区，如下："></a>最后，再给一点福利，纠正两个误区，如下：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、“无论男女老少，只要晚上不吃饭，就能减肥”，这个肯定是错的，当然这个也可能减</span><br><span class="line">下来，但是关键是，你觉得你减肥减下来后，身体还正常吗？还有，这种方法反弹也</span><br><span class="line">不稳定的。</span><br><span class="line">2、“吃了XXX，7天瘦10斤不是梦”，我们减肥减下来的一般是10斤脂肪，二、而这个里</span><br><span class="line">面减下来的可能是4斤肌肉，1.5斤粪便，3斤水，1.5斤脂肪。</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -226,7 +225,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2020/12/16/iOS-模拟定位/">http://axibreaking.ml/2020/12/16/iOS-模拟定位/</a></span>
+                        <span><a href="http://axibreaking.ml/2018/04/20/2018/关于健身/">http://axibreaking.ml/2018/04/20/2018/关于健身/</a></span>
                     </p>
                 
                 
@@ -250,7 +249,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/iOS/"># iOS</a>
+                        <a href="/tags/心得/"># 心得</a>
                     
                         
                 </span>
@@ -263,8 +262,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2018/05/07/2018/关于HipHop/">关于HipHop</a>
             
-            <a class="next" rel="next" href="/2020/09/30/WEB端接入阿里多人音视频通信/">WEB端接入阿里多人音视频通信</a>
+            
+            <a class="next" rel="next" href="/2018/03/23/2018/我的大学舍友/">我的大学舍友</a>
             
         </section>
 
