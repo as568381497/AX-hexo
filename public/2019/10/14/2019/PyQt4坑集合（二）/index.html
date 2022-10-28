@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>PyQt4坑(特性)集合（二） | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">PyQt4坑(特性)集合（二）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 14, 2019&nbsp;&nbsp;16:18:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/PyQt4/">PyQt4</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>最近开发中遇到的PyQt的坑，写出来，分享下</p>
+<h3 id="1-Label-控件中-给图片样式的显示方式"><a href="#1-Label-控件中-给图片样式的显示方式" class="headerlink" title="1.Label 控件中 给图片样式的显示方式"></a>1.Label 控件中 给图片样式的显示方式</h3><p>Background-image：显示方式  原始图片显示   不裁剪<br>Border-image：显示方式  拉伸  完整显示<br>image:显示方式 原始图片 最合适比例显示 </p>
+<h3 id="2-Label-图片的加载"><a href="#2-Label-图片的加载" class="headerlink" title="2.Label 图片的加载"></a>2.Label 图片的加载</h3><p>png：png图片显示可以使用样式或者pixmap（跟jpg加载一样）显示，但是需要先把图片加载为py文件</p>
+<p>⑴. 写入qrc文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE RCC&gt;</span><br><span class="line">&lt;RCC version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;qresource prefix=&quot;/Images&quot;&gt;</span><br><span class="line">&lt;file&gt;time.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;gou.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;default.png&lt;/file&gt;</span><br><span class="line">&lt;/qresource&gt;</span><br><span class="line">&lt;/RCC&gt;</span><br></pre></td></tr></table></figure>
+
+<p>⑵. 将qrc文件用PyRcc转换为py文件</p>
+<p>⑶. 调用py文件进行加载</p>
+<p>jpg图片加载： jpg图片加载只能用pixmap加载显示（实际上是画上去）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.disPlayImage.load(self.jpgImageURL)</span><br><span class="line">pixmap = QtGui.QPixmap(self.disPlayImage)</span><br><span class="line">//画上去的显示方式（这是imageView的大小，不拉伸）</span><br><span class="line">scaredPixmap = pixmap.scaled(self.imageView.width(), self.imageView.height(), aspectRatioMode=Qt.KeepAspectRatio)</span><br><span class="line">//pixmap加载图片</span><br><span class="line">self.imageView.setPixmap(scaredPixmap)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-控件的边框显示"><a href="#3-控件的边框显示" class="headerlink" title="3.控件的边框显示"></a>3.控件的边框显示</h3><p>需要添加边框的宽，显示方式，颜色才能显示</p>
+<h3 id="4-获取屏幕大小"><a href="#4-获取屏幕大小" class="headerlink" title="4.获取屏幕大小"></a>4.获取屏幕大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QtGui.QApplication.desktop()</span><br><span class="line">View = desktop.screenGeometry()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-子控件需要实现父控件paintEvent绘图方法才能显示图片"><a href="#5-子控件需要实现父控件paintEvent绘图方法才能显示图片" class="headerlink" title="5.子控件需要实现父控件paintEvent绘图方法才能显示图片"></a>5.子控件需要实现父控件paintEvent绘图方法才能显示图片</h3><h3 id="6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"><a href="#6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递" class="headerlink" title="6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"></a>6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</h3><h3 id="7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"><a href="#7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用" class="headerlink" title="7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"></a>7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.setParent(None)</span><br></pre></td></tr></table></figure>
+
+<p>来删除控件的，这样内存中的地址才会被回收</p>
+<h3 id="8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><a href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数" class="headerlink" title="8.在“main”函数里面可以获取软件存在的路径及外部传入的参数"></a>8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.argv[0]//软件打开路径</span><br><span class="line">sys.arvg[1]//外部传入参数</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2019/10/14/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%BA%8C%EF%BC%89/">http://axibreaking.ml/2019/10/14/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%BA%8C%EF%BC%89/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
+                    
+                        <a href="/tags/%E5%9D%91%E9%9B%86%E5%90%88/"># 坑集合</a>
+                    
+                        <a href="/tags/PyQt4/"># PyQt4</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/10/15/2019/PyQt%E4%B9%8B%E5%88%86%E7%A6%BB%E5%A4%9A%E7%BA%BF%E7%A8%8B/">PyQt之分离多线程</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/14/2019/PyQt%E9%A1%B9%E7%9B%AE%E5%B0%8F%E7%BB%93/">阶段小结（五）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

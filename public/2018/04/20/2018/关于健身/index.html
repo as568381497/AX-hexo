@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>关于健身 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">关于健身</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 20, 2018&nbsp;&nbsp;20:46:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>关于健身，之前是我一个朋友要我写一下，但是我想的是我一个只是喜欢健身的人，给不了别人什么意见，网上有很多大神可以请教，没我什么事情，但是后来看在网上说的一些误区，就想着写一下写一下有些基础的心得分享，就只是一些关于健身的知识分享。</p>
+<p>说到健身，为什么要健身。其实，我觉得普通人健身的目的，或者说作用，就两个，一个是想要一个好的身材，不管是男生还是女生，另外一个是想要一个好的身体素质，这也是我的但是决定健身的想法。特别是我现在做的工作，我觉得我需要有一个好的身体才行。</p>
+<p>其实，当你决定健身之后，坚持健身下来，你会发现，带来的好处不止这两个，工作累的时候，或者说压抑的时候，需要发泄，而运动，我认为是不二之选，既能锻炼身体，又能发泄放松，何乐而不为。还有你坚持健身下来，你会发现自己的状态会很不一样，其中包括了自信和自律。</p>
+<h2 id="关于健身的方法，总结就："><a href="#关于健身的方法，总结就：" class="headerlink" title="关于健身的方法，总结就："></a>关于健身的方法，总结就：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">控制饮食+制定锻炼计划+坚持+坚持+坚持。</span><br></pre></td></tr></table></figure>
+
+<p>既然决定健身了，就还是适当的控制饮食，这个控制饮食不是叫你不吃东西。看你自己的健身计划是什么，增肌或者是减脂，目标不同，饮食也会不同，以我自己为例，我当时是减脂，增肌只是额外目标，所以，油炸、碳酸、饼干、甜食之类的我就没有再吃过了，网上有一种说法是保持少食多餐，就是说一天可以不必要是三餐是，可以是四餐或者五餐，但是每餐吃少量食物。我不喜欢那个，所以我的做法是，早餐正常，最好中午多吃一点，八分饱，下午少吃。</p>
+<h2 id="说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区："><a href="#说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区：" class="headerlink" title="说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区："></a>说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1、首先减肥没有局部减肥，你不管怎么运动都是全身消耗脂肪的，锻炼倒是有局部锻炼。</span><br><span class="line">2、减肥不是只做有氧运动才能减肥，有效的减肥是无氧+有氧结合。</span><br><span class="line">3、长时间不练肌肉会变成肥肉，事实是肌肉会因为不锻练而萎缩变小，脂肪会因为摄入</span><br><span class="line">大于消耗而堆积。</span><br><span class="line">4、女生没那么容易长肌肉，荷尔蒙在哪，除非你打激素。</span><br><span class="line">综上所述，我建议锻炼的方法是先无氧再有氧再无氧，这样锻炼。</span><br></pre></td></tr></table></figure>
+
+<p>原因是，在我们开始锻炼的时候，身体首先消耗的不是我们的脂肪能量，而是另外的能量，做无氧首先很快的消耗掉这部分的能量，再去做有氧运动，这样就直接开始消耗脂肪的能量了，最后，再去做无氧，身体在疲惫的情况下，再做无氧运动效果更好，线条也更容易练的更好看。</p>
+<p>我当时目标主要是减脂，所以我当时的锻炼方法是，首先是热身加拉伸，让身体活动开，然后是力量锻炼8分钟左右，也就两组动作，然后是跑步至少半个小时以上，然后是体能锻炼40分钟左右，然后是力量锻炼半个小时，最后是拉伸，结束。</p>
+<p>这个是我大三时候每天去健身房坚持的事情，除了力量和体能锻炼的方法和部位不同，其他都是雷打不动的一样。</p>
+<p>关于蛋白粉，网上的说法有好有坏，我的态度是持中立，不好也不坏吧，不过我是不喜欢吃的，还是吃饭好。</p>
+<h2 id="最后，再给一点福利，纠正两个误区，如下："><a href="#最后，再给一点福利，纠正两个误区，如下：" class="headerlink" title="最后，再给一点福利，纠正两个误区，如下："></a>最后，再给一点福利，纠正两个误区，如下：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、“无论男女老少，只要晚上不吃饭，就能减肥”，这个肯定是错的，当然这个也可能减</span><br><span class="line">下来，但是关键是，你觉得你减肥减下来后，身体还正常吗？还有，这种方法反弹也</span><br><span class="line">不稳定的。</span><br><span class="line">2、“吃了XXX，7天瘦10斤不是梦”，我们减肥减下来的一般是10斤脂肪，二、而这个里</span><br><span class="line">面减下来的可能是4斤肌肉，1.5斤粪便，3斤水，1.5斤脂肪。</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2018/04/20/2018/%E5%85%B3%E4%BA%8E%E5%81%A5%E8%BA%AB/">http://axibreaking.ml/2018/04/20/2018/%E5%85%B3%E4%BA%8E%E5%81%A5%E8%BA%AB/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E5%BF%83%E5%BE%97/"># 心得</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/05/07/2018/%E5%85%B3%E4%BA%8EHipHop/">关于HipHop</a>
+            
+            
+            <a class="next" rel="next" href="/2018/03/23/2018/%E6%88%91%E7%9A%84%E5%A4%A7%E5%AD%A6%E8%88%8D%E5%8F%8B/">我的大学舍友</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

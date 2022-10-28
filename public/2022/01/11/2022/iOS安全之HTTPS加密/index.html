@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>iOS安全之请求客户端单向加密 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">iOS安全之请求客户端单向加密</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 11, 2022&nbsp;&nbsp;17:04:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/iOS/">iOS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>先了解一波一般的抓包原理：一般抓包都是通过代理服务来冒充你的服务器，客户端真正交互的是这个假冒的代理服务，这个假冒的服务再和我们真正的服务交互，这个代理就是一个中间者，我们所有的数据都会通过这个中间者，所以我们的数据就会被抓取。HTTPS 也同样会被这个中间者伪造的证书来获取我们加密的数据。</p>
+<p>那么，我们针对这个代理抓包可以做两个处理：<br>第一个，简单的，做数据请求前，判断有没有代理;<br>第二个，如果是HTTPS的话，就就是判断HTTPS证书的合法性;</p>
+<p>这里主要是对第二个方法做说明，主要用方法叫SSL Pinning，即SSL证书绑定，<br>通过SSL证书绑定来验证服务器身份，防止应用被抓包。</p>
+<p>针对Swift，可以依赖Alamofire库，来进行证书验证，OC的话可以用AFNetworking。</p>
+<p>主要分为五步：<br>1.从服务器取的证书；<br>2.导入证书；<br>3.导入Alamofire库；<br>4.设置本地Session；<br>5.使用我们自己的Session做请求；</p>
+<h3 id="1-从服务器取的证书"><a href="#1-从服务器取的证书" class="headerlink" title="1.从服务器取的证书"></a>1.从服务器取的证书</h3><p>这里的证书指的是服务端HTTPS的SSL证书，证书有很多后缀比如: .cer，.pem ，.crt，以及.p12等，当然不止这一些，但是最好是用后缀是cer的证书。</p>
+<p>如果服务器给的是如果他们给个.pem文件，要使用命令行转换：</p>
+<p>openssl x509 -inform PEM -in name.pem -outform DER -out name.cer</p>
+<p>如果给了个.crt文件，请这样转换：</p>
+<p>openssl x509 -in name.crt -out name.cer -outform der</p>
+<p>一般我们拿到后台人员导出的证书，会用到两个，一个是后缀名为cer(或者其他)的包含公钥的CA证书，用来让客户端对服务器进行验证；一个是后缀名为p12的客户端证书，用来让服务器对客户端进行验证,但是，我们要做的只要客户端对服务器端进行验证就好了，也就是我们只需要使用后缀为.cer的CA证书，当然，最安全的肯定是双向验证。</p>
+<h3 id="2-导入证书"><a href="#2-导入证书" class="headerlink" title="2.导入证书"></a>2.导入证书</h3><p>1.通过Xcode左上角”File” –&gt;  Add File to “xxxx”<br>将证书文件导入到项目</p>
+<p><img src="/images/iOS%E5%AE%89%E5%85%A8%E4%B9%8BHTTPS%E5%8A%A0%E5%AF%86/1.png" alt="导入文件"></p>
+<p>在这里要注意下添加完之后，在项目的”Build Phases” –&gt;   “Copy Bundle Resoures” 目录里面应该是能找到证书文件的，如果没有找到，就需要在这个目录中再手动添加下</p>
+<p><img src="/images/iOS%E5%AE%89%E5%85%A8%E4%B9%8BHTTPS%E5%8A%A0%E5%AF%86/2.png" alt="检查文件"></p>
+<h3 id="3-导入Alamofire库"><a href="#3-导入Alamofire库" class="headerlink" title="3.导入Alamofire库"></a>3.导入Alamofire库</h3><p>CocoaPods导入： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pod &#x27;Alamofire&#x27;, &#x27;~&gt; 5.5&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Carthage导入： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">github &quot;Alamofire/Alamofire&quot; ~&gt; 5.5</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Swift Package Manager导入： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dependencies: [</span><br><span class="line">    .package(url: &quot;https://github.com/Alamofire/Alamofire.git&quot;, .upToNextMajor(from: &quot;5.5.0&quot;))</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="4-设置本地Session"><a href="#4-设置本地Session" class="headerlink" title="4.设置本地Session"></a>4.设置本地Session</h3><p>Alamofire的每一次请求都是由一个Session来维护的，本身会有一个默认的Session，叫 “Session.default”,我们要做的就是写一个有我们自己设置的Session对象，来做后续的请求,最好这个Session对象是由一个单例持有来维护的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">struct NetworkClient &#123;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  struct Certificates &#123;</span><br><span class="line">    </span><br><span class="line">    //获取本地证书的方法</span><br><span class="line">    static let URLCer = Certificates.certificate(filename: &quot;MyChain&quot;)</span><br><span class="line">    private static func certificate(filename: String) -&gt; SecCertificate &#123;</span><br><span class="line">      let filePath = Bundle.main.path(forResource: filename, ofType: &quot;cer&quot;)!</span><br><span class="line">      let data = try! Data(contentsOf: URL(fileURLWithPath: filePath))</span><br><span class="line">      return SecCertificateCreateWithData(nil, data as CFData)!</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  static let shared = NetworkClient()</span><br><span class="line"></span><br><span class="line">//我们自己的session</span><br><span class="line">  let session: Session</span><br><span class="line">    //设置正确的服务器地址以及证书</span><br><span class="line">  let evaluators = [</span><br><span class="line">    &quot;xxxxx.xxxx.com&quot;: PinnedCertificatesTrustEvaluator(certificates: [Certificates.URLCer]),</span><br><span class="line"></span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  init() &#123;</span><br><span class="line">    //session的设置</span><br><span class="line">    let manager = ServerTrustManager(evaluators: self.evaluators)</span><br><span class="line">    self.session = Session(configuration:URLSessionConfiguration.default,serverTrustManager: manager)</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-使用我们自己的Session做请求"><a href="#5-使用我们自己的Session做请求" class="headerlink" title="5.使用我们自己的Session做请求"></a>5.使用我们自己的Session做请求</h3><p>在我们做数据请求的地方将之前写的Session.request替换成我们自己的xxxx.shared.session.request就好了.一般是替换”AF.request”</p>
+<p>至此，其实我们已经实现了客户端对服务器的验证，这样在每次请求前，客户端这边都会验证服务器的证书，如果被代理抓包的话，就会显示警告，抓取不到数据的。</p>
+<h3 id="6-扩展"><a href="#6-扩展" class="headerlink" title="6.扩展"></a>6.扩展</h3><p>其实在设置证书的位置，我们可以添加不用的验证方式，Alamofire提供的有6种:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DefaultTrustEvaluator: Uses the default server trust evaluation while allowing you to control whether to validate the host provided by the challenge.</span><br><span class="line">RevocationTrustEvaluator: Checks the status of the received certificate to ensure it hasn’t been revoked. This isn’t usually performed on every request due to the network request overhead it entails.</span><br><span class="line">PinnedCertificatesTrustEvaluator: Uses the provided certificates to validate the server trust. The server trust is considered valid if one of the pinned certificates match one of the server certificates. This evaluator can also accept self-signed certificates.</span><br><span class="line">PublicKeysTrustEvaluator: Uses the provided public keys to validate the server trust. The server trust is considered valid if one of the pinned public keys match one of the server certificate public keys.</span><br><span class="line">CompositeTrustEvaluator: Evaluates an array of ServerTrustEvaluating values, only succeeding if all of them are successful. This type can be used to combine, for example, the RevocationTrustEvaluator and the PinnedCertificatesTrustEvaluator.</span><br><span class="line">DisabledTrustEvaluator: This evaluator should only be used in debug scenarios as it disables all evaluation which in turn will always consider any server trust as valid. This evaluator should never be used in production environments!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">let evaluators: [String: ServerTrustEvaluating] = [</span><br><span class="line">    // By default, certificates included in the app bundle are pinned automatically.</span><br><span class="line">    &quot;cert.example.com&quot;: PinnedCertificatesTrustEvaluator(),</span><br><span class="line">    // By default, public keys from certificates included in the app bundle are used automatically.</span><br><span class="line">    &quot;keys.example.com&quot;: PublicKeysTrustEvaluator(),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">let manager = ServerTrustManager(evaluators: evaluators)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这是一个验证方式的键值对，key是服务器地址，value值是验证方式</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#security">https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#security</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2022/01/11/2022/iOS%E5%AE%89%E5%85%A8%E4%B9%8BHTTPS%E5%8A%A0%E5%AF%86/">http://axibreaking.ml/2022/01/11/2022/iOS%E5%AE%89%E5%85%A8%E4%B9%8BHTTPS%E5%8A%A0%E5%AF%86/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Swift/"># Swift</a>
+                    
+                        <a href="/tags/%E5%AE%89%E5%85%A8/"># 安全</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/10/28/iOS%E4%B9%8B%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/">iOS之开屏页图片加载问题</a>
+            
+            
+            <a class="next" rel="next" href="/2021/01/19/2021/SwiftUI%E4%B9%8B%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2/">SwiftUI之登陆界面</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
