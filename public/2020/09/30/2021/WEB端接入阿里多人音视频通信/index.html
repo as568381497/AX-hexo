@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -16,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -32,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -49,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -63,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -71,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -107,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F"><span class="toc-text">1.序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%82%E8%BF%B0"><span class="toc-text">2.概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">3.接入流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-SDK%E6%8E%A5%E5%85%A5"><span class="toc-text">3.1 SDK接入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-SDK%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.2 SDK功能实现</span></a></li></ol></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -197,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <h3 id="1-序"><a href="#1-序" class="headerlink" title="1.序"></a>1.序</h3><p>前段时间做完了一个项目，其中有个视频会议的功能，其中要实现的核心是多对多音视频通话功能，用介入第三方SDK，也就是接入了阿里的音视频RTC实现，觉得还是可以记录一下。</p>
 <p>当时其实考察了很多其他的SDK，比如腾讯的视频会议，还有阿里的视频会议，但是，实际操作完后，发现这两个SDK还在开发中，不完善，而且其实具体的实现方式，还是跳转回他们自己视频会议的页面，觉得这样的接入方式限制太多，于是考虑自己实现所有功能，也就是换了阿里的音视频会议的RTC。</p>
 <h3 id="2-概述"><a href="#2-概述" class="headerlink" title="2.概述"></a>2.概述</h3><p>因为涉及到的场景是多对多人视频通话，阿里这边的实现方式是，通过一个key值，可以理解为一个房间号，或者通道号，把进入这个房间（通道）中的人的音视频信息共享，都向这个房间传音视频流，同时从这个房间拉取别人的音视频流。</p>
@@ -236,7 +168,7 @@
 
 <p>到这里，基本上所有的功能都接入完了，最后，要注意的是，退出频道的时候会有个延迟，在其他用户哪里可能会白屏一会，暂时还没找到原因。</p>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -258,11 +190,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -304,10 +231,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>

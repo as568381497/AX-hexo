@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -16,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -32,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -49,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -63,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -71,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -107,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E7%9A%84%E8%AF%81%E4%B9%A6"><span class="toc-text">1.从服务器取的证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AF%BC%E5%85%A5%E8%AF%81%E4%B9%A6"><span class="toc-text">2.导入证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AF%BC%E5%85%A5Alamofire%E5%BA%93"><span class="toc-text">3.导入Alamofire库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E6%9C%AC%E5%9C%B0Session"><span class="toc-text">4.设置本地Session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E4%BD%BF%E7%94%A8%E6%88%91%E4%BB%AC%E8%87%AA%E5%B7%B1%E7%9A%84Session%E5%81%9A%E8%AF%B7%E6%B1%82"><span class="toc-text">5.使用我们自己的Session做请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%89%A9%E5%B1%95"><span class="toc-text">6.扩展</span></a></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -197,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>先了解一波一般的抓包原理：一般抓包都是通过代理服务来冒充你的服务器，客户端真正交互的是这个假冒的代理服务，这个假冒的服务再和我们真正的服务交互，这个代理就是一个中间者，我们所有的数据都会通过这个中间者，所以我们的数据就会被抓取。HTTPS 也同样会被这个中间者伪造的证书来获取我们加密的数据。</p>
 <p>那么，我们针对这个代理抓包可以做两个处理：<br>第一个，简单的，做数据请求前，判断有没有代理;<br>第二个，如果是HTTPS的话，就就是判断HTTPS证书的合法性;</p>
 <p>这里主要是对第二个方法做说明，主要用方法叫SSL Pinning，即SSL证书绑定，<br>通过SSL证书绑定来验证服务器身份，防止应用被抓包。</p>
@@ -237,7 +169,7 @@
 <p>这是一个验证方式的键值对，key是服务器地址，value值是验证方式</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#security">https://github.com/Alamofire/Alamofire/blob/master/Documentation/AdvancedUsage.md#security</a></p>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -259,11 +191,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -289,7 +216,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/10/28/iOS%E4%B9%8B%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/">iOS之开屏页图片加载问题</a>
+                <a class="prev" rel="prev" href="/2022/10/28/2022/iOS%E4%B9%8B%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/">iOS之开屏页图片加载问题</a>
             
             
             <a class="next" rel="next" href="/2021/01/19/2021/SwiftUI%E4%B9%8B%E7%99%BB%E9%99%86%E7%95%8C%E9%9D%A2/">SwiftUI之登陆界面</a>
@@ -303,10 +230,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>

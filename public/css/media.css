@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-/* mobile phone and smart portable devices */
-@media screen and (max-width: 479px) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .main {
     padding-top: 40pt;
   }
@@ -136,21 +133,20 @@
   }
 }
 /* iPads (portrait and landscape) ----------- */
-@media screen and (max-width: 1023px) {
+@media only screen and (min-device-width: 768px) {
   .navbar-mobile {
     display: none;
   }
 }
 /* Desktops and laptops ----------- */
-@media screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px) {
   .navbar-mobile {
     display: none;
   }
 }
 /* post toc Style */
-@media screen and (max-width: 1279px) {
+@media (max-width: 1279px) {
   .post-toc {
     display: none;
   }
 }
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

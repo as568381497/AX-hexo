@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Label-%E6%8E%A7%E4%BB%B6%E4%B8%AD-%E7%BB%99%E5%9B%BE%E7%89%87%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%98%BE%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">1.Label 控件中 给图片样式的显示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Label-%E5%9B%BE%E7%89%87%E7%9A%84%E5%8A%A0%E8%BD%BD"><span class="toc-text">2.Label 图片的加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A7%E4%BB%B6%E7%9A%84%E8%BE%B9%E6%A1%86%E6%98%BE%E7%A4%BA"><span class="toc-text">3.控件的边框显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F"><span class="toc-text">4.获取屏幕大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AD%90%E6%8E%A7%E4%BB%B6%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%88%B6%E6%8E%A7%E4%BB%B6paintEvent%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%89%8D%E8%83%BD%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-text">5.子控件需要实现父控件paintEvent绘图方法才能显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%BD%93%E5%AD%90%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%8F%96%E4%BA%86%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%90%8E%E5%9C%A8%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E9%87%8C%E9%9D%A2%E8%B0%83%E7%94%A8%E7%88%B6%E6%8E%A7%E4%BB%B6%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92"><span class="toc-text">6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%88%B6%E6%8E%A7%E4%BB%B6%E5%8E%BB%E6%8E%89%E5%AD%90%E6%8E%A7%E4%BB%B6%E4%B8%8D%E6%98%AF%E7%94%A8%E2%80%9CdeleteLater%E2%80%9D%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E5%8F%AA%E6%98%AF%E5%9C%A8%E7%95%8C%E9%9D%A2%E4%B8%8A%E5%8E%BB%E6%8E%89%E5%AD%90%E6%8E%A7%E4%BB%B6%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E5%86%85%E5%AD%98%E4%B8%AD%E8%BF%98%E5%AD%98%E5%9C%A8%EF%BC%8C%E7%94%A8sip%E7%9A%84%E2%80%9Cdeleter%E2%80%9D%E6%96%B9%E6%B3%95%E5%88%A0%E9%99%A4%E4%B9%9F%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%8C%E4%BC%9A%E5%88%A0%E6%8E%89%E4%B8%8D%E5%BA%94%E8%AF%A5%E5%88%A0%E9%99%A4%E7%9A%84%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A0%81%E5%8F%91%E7%8E%B0%EF%BC%8C%E6%BA%90%E7%A0%81%E9%87%8C%E9%9D%A2%E6%98%AF%E7%94%A8"><span class="toc-text">7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%9C%A8%E2%80%9Cmain%E2%80%9D%E5%87%BD%E6%95%B0%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E5%AD%98%E5%9C%A8%E7%9A%84%E8%B7%AF%E5%BE%84%E5%8F%8A%E5%A4%96%E9%83%A8%E4%BC%A0%E5%85%A5%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</span></a></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>最近开发中遇到的PyQt的坑，写出来，分享下</p>
 <h3 id="1-Label-控件中-给图片样式的显示方式"><a href="#1-Label-控件中-给图片样式的显示方式" class="headerlink" title="1.Label 控件中 给图片样式的显示方式"></a>1.Label 控件中 给图片样式的显示方式</h3><p>Background-image：显示方式  原始图片显示   不裁剪<br>Border-image：显示方式  拉伸  完整显示<br>image:显示方式 原始图片 最合适比例显示 </p>
 <h3 id="2-Label-图片的加载"><a href="#2-Label-图片的加载" class="headerlink" title="2.Label 图片的加载"></a>2.Label 图片的加载</h3><p>png：png图片显示可以使用样式或者pixmap（跟jpg加载一样）显示，但是需要先把图片加载为py文件</p>
@@ -219,7 +149,7 @@
 <p>来删除控件的，这样内存中的地址才会被回收</p>
 <h3 id="8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><a href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数" class="headerlink" title="8.在“main”函数里面可以获取软件存在的路径及外部传入的参数"></a>8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.argv[0]//软件打开路径</span><br><span class="line">sys.arvg[1]//外部传入参数</span><br></pre></td></tr></table></figure>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -242,11 +172,6 @@
                     </p>
                 
                 
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
-                
 
             </section>
         
@@ -258,9 +183,9 @@
                     
                         <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
-                        <a href="/tags/%E5%9D%91%E9%9B%86%E5%90%88/"># 坑集合</a>
-                    
                         <a href="/tags/PyQt4/"># PyQt4</a>
+                    
+                        <a href="/tags/%E5%9D%91%E9%9B%86%E5%90%88/"># 坑集合</a>
                     
                         
                 </span>
@@ -287,11 +212,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

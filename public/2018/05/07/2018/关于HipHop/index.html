@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E8%BF%99%E9%87%8C%E9%9D%A2%EF%BC%8C%E6%88%91%E4%B8%8D%E4%BC%9A%E8%AE%B2%E4%BB%80%E4%B9%88%E7%A7%91%E6%99%AE%E5%86%85%E5%AE%B9%EF%BC%8C%E6%88%91%E5%8F%AA%E4%BC%9A%E8%AE%B2%E6%88%91%E7%9F%A5%E9%81%93%E7%9A%84%E8%A1%97%E8%88%9E%E3%80%82"><span class="toc-text">在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%88%9E%E8%B9%88%E4%B8%80%E5%AE%9A%E8%A6%81%E6%9C%89%E9%9F%B3%E4%B9%90"><span class="toc-text">舞蹈一定要有音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%94%A8%E5%B0%8F%E7%8C%AA%EF%BC%88%E7%BD%97%E5%BF%97%E7%A5%A5%EF%BC%89%E5%9C%A8%E3%80%8A%E8%BF%99%EF%BC%8C%E5%B0%B1%E6%98%AF%E8%A1%97%E8%88%9E%E9%87%8C%E9%9D%A2%E3%80%8B%E8%AF%B4%E7%9A%84%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%92%8C%E5%A4%A7%E5%AE%B6%E5%85%B1%E5%8B%89"><span class="toc-text">最后用小猪（罗志祥）在《这，就是街舞里面》说的一句话和大家共勉</span></a></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <h2 id="在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。"><a href="#在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。" class="headerlink" title="在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。"></a>在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。</h2><p>记得之前在网上看到一条很有趣的自我介绍——会跳舞的程序员，会跳舞的没我编程厉害，会编程的没我跳舞厉害，哈哈，开玩笑的。</p>
 <p>接触街舞是在我初中的时候把，初三那个时候第一次知道了有街舞这个东西，在大一的时候，真正的开始学习街舞，那个时候在学校里面报了一个舞团学习，当时学的是Breaking，之后在舞团里面待了两年，在这两年里面，我成为了舞团的队员，参加了一些比赛，接触了一些其他的舞种，比如：Popping、Locking、Hip-hop等，也认识了很多的好朋友，也遇见了我的老大和陈姐，可以说，是我很珍贵的记忆。</p>
 <p>我到底是为什么会要学舞呢？当时学舞，主要是因为觉得要找点事情做，加上一直对这个很有兴趣，当然，最重要的是，当你戴上耳机，沉浸在音乐了自己的舞蹈里面的时候，是真的有一种很舒服，很开心的感觉，对，跳舞就是为了开心。</p>
@@ -214,7 +144,7 @@
 
 <p>希望，我们在各自的领域里面最最专业的。</p>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -236,11 +166,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -278,11 +203,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

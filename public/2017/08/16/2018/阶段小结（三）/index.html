@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E8%BF%99%E9%87%8C%E9%9D%A2%EF%BC%8C%E6%88%91%E4%B8%8D%E4%BC%9A%E8%AE%B2%E4%BB%80%E4%B9%88%E7%A7%91%E6%99%AE%E5%86%85%E5%AE%B9%EF%BC%8C%E6%88%91%E5%8F%AA%E4%BC%9A%E8%AE%B2%E6%88%91%E7%9F%A5%E9%81%93%E7%9A%84%E8%A1%97%E8%88%9E%E3%80%82"><span class="toc-text">在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E5%B0%8F%E7%A6%8F%E5%88%A9%EF%BC%8C%E8%8E%B7%E5%8F%96View%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="toc-text">附：小福利，获取View的截图</span></a></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <h2 id="在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。"><a href="#在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。" class="headerlink" title="在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。"></a>在这里面，我不会讲什么科普内容，我只会讲我知道的街舞。</h2><p>5月份从武汉来到杭州，上班到现在有两个多月了，期间我完成了对现有公司应用的两次重大更新，（无奈的是，第二次更新的东西我们都快做完了，结果被砍，换到小程序做去了），以及几次小的更新。</p>
 <p>最近接触比较多的是腾讯云的SDK，我们应用接入的是腾讯云的完整版，包括了点播、直播和小视频的内容，也是这个SDK有很多的坑，一个个踩过来。</p>
 <p>开始我们最先要做的是小视频的一个功能，这个接入腾讯云的SDK后，SDK里面小视频的录制需要腾讯云的一个授权的key，可是这个key还真的是贵，虽然不是我出钱，但是需要这个key，才能使用小视频的录制功能，后面的使用就简单了，腾讯云提供了录制和视频编辑的功能，录制完成后，后面的编辑功能，很好接入的。</p>
@@ -212,7 +142,7 @@
 <p>以当前移动view 生成图片</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+ (UIImage *)makeMoveImageWithView:(UIView *)view withSize:(CGSi</span><br><span class="line">ze)size</span><br><span class="line">&#123;</span><br><span class="line">UIGraphicsBeginImageContext(view.frame.size);</span><br><span class="line">[view drawViewHierarchyInRect:view.bounds afterScreenUpdates</span><br><span class="line">:NO];</span><br><span class="line">UIImage *image = UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">UIGraphicsEndImageContext();</span><br><span class="line"><span class="built_in">return</span> image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -235,11 +165,6 @@
                     </p>
                 
                 
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
-                
 
             </section>
         
@@ -249,11 +174,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/iOS/"># iOS</a>
-                    
                         <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
                         <a href="/tags/%E6%80%BB%E7%BB%93/"># 总结</a>
+                    
+                        <a href="/tags/iOS/"># iOS</a>
                     
                         
                 </span>
@@ -278,11 +203,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

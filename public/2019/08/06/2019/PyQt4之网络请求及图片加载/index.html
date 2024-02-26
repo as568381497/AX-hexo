@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,7 +95,6 @@
             <div class="container">
     
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -137,7 +122,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>之前在网上找了很久关于PyQt网络及图片下载方面的资料，结果发现，网上基本没有，而且PyQt本身是不支持网络图片加载的，具体实现还是需要将l网络图片下载到本地，然后显示，但是并不是所有的图片都能显示的，所以只好自己封账一个来用了。</p>
 <p>里面包括了：<br>1.PyQt4的一般的GET和POST的网络请求，我自己给他加上了请求完成的回调。<br>2.直接传入控件，及网络图片的地址，就可以显示网上的图片的，加载服务器图片也搞定。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目前优点:</span><br><span class="line">是网络请求(图片下载)到请求完成(显示完成)一步搞定</span><br><span class="line"></span><br><span class="line">目前缺点是:</span><br><span class="line">因为都是使用的是同步，所以会阻碍程序，异步显示，PyQt不许与直接调用主线程刷新UI，等我后续优化。</span><br></pre></td></tr></table></figure>
@@ -145,7 +130,7 @@
 <p>下面是Git上的地址</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/as568381497/CXPyQt4HTTP">这是地址</a></p>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -167,11 +152,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -211,11 +191,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

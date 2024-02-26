@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81UIImagePickerController"><span class="toc-text">一、UIImagePickerController</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B7%B3%E8%BD%ACController%E5%AE%9E%E7%8E%B0%E4%B8%A4%E4%B8%AA%E5%8D%8F%E8%AE%AEUIImagePickerControllerDelegate%E5%92%8CUINavigationControllerDelegate"><span class="toc-text">1.跳转Controller实现两个协议UIImagePickerControllerDelegate和UINavigationControllerDelegate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E4%BE%8B%E5%8C%96%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%8D%8F%E8%AE%AE%E8%B7%B3%E8%BD%AC"><span class="toc-text">2.实例化，实现协议跳转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81AVCaptureSession"><span class="toc-text">二、AVCaptureSession</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%8C%E5%AF%BC%E5%85%A5AVfounation%E5%8C%85"><span class="toc-text">1，导入AVfounation包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="toc-text">2.实例化</span></a></li></ol></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>做的第一个APP叫《测量工具箱》，这个APP是我在快一个月的时候昨晚上架，一款工具类的APP，也是和别人合作做的，我负责一半功能的实现以及<br>最后的整合。</p>
 <p>首先从功能上来说这个是整合的几个功能的APP，所以在整合别人功能的时候发现，在用storyboard的时候，将UI和功能代码分开写，再整合的时候，很简便，只需要根据情况适当的修改一点代码，就可以完成基本的整合，所以，我觉得这样写很好用。另外，在整合代码的时候，每个人的代码风格不一样，所以在看别人代码的时候，习惯别人的代码风格其实也不错，同时还可以收获很多东西，对自己的帮助还是挺大的。</p>
 <p>仔细回想起来，自己做完这个APP，非常难的点其实没有，就有一些转不过弯的一些东西需要记住。</p>
@@ -215,7 +145,7 @@
 <p>还有一种相机的实现方式</p>
 <h2 id="二、AVCaptureSession"><a href="#二、AVCaptureSession" class="headerlink" title="二、AVCaptureSession"></a>二、AVCaptureSession</h2><h3 id="1，导入AVfounation包"><a href="#1，导入AVfounation包" class="headerlink" title="1，导入AVfounation包"></a>1，导入AVfounation包</h3><h3 id="2-实例化"><a href="#2-实例化" class="headerlink" title="2.实例化"></a>2.实例化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">//1.创建媒体管理会话</span><br><span class="line">AVCaptureSession*session = [[AVCaptureSessionalloc]init];</span><br><span class="line">//判断分辨率是否支持1280*720，支持就设置为1280*720</span><br><span class="line"><span class="keyword">if</span>( [sessioncanSetSessionPreset:AVCaptureSessionPreset1280x720] )</span><br><span class="line">&#123;</span><br><span class="line">session.sessionPreset=AVCaptureSessionPreset1280x720;</span><br><span class="line">&#125;</span><br><span class="line">//2.获取后置摄像头设备对象</span><br><span class="line">AVCaptureDevice*device =nil;</span><br><span class="line">NSArray*cameras = [AVCaptureDevicedevicesWithMediaType:AVMediaTyp</span><br><span class="line">eVideo];</span><br><span class="line"><span class="keyword">for</span>(AVCaptureDevice*cameraincameras) &#123;</span><br><span class="line"><span class="keyword">if</span>(camera.position==AVCaptureDevicePositionBack) &#123;//取得后置摄像头</span><br><span class="line">device = camera;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!device) &#123;</span><br><span class="line">NSLog(@<span class="string">&quot;取得后置摄像头错误&quot;</span>);</span><br><span class="line"><span class="built_in">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">//3.创建输入数据对象</span><br><span class="line">NSError*error =nil;</span><br><span class="line">AVCaptureDeviceInput*captureInput = [[AVCaptureDeviceInputalloc]</span><br><span class="line">initWithDevice:device</span><br><span class="line">error:&amp;error];</span><br><span class="line"><span class="keyword">if</span>(error) &#123;</span><br><span class="line">NSLog(@<span class="string">&quot;创建输入数据对象错误&quot;</span>);</span><br><span class="line"><span class="built_in">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">//4.创建输出数据对象</span><br><span class="line">AVCaptureStillImageOutput*imageOutput = [[AVCaptureStillImageOutp</span><br><span class="line">utalloc]init];</span><br><span class="line">NSDictionary*setting =@&#123;AVVideoCodecKey:AVVideoCodecJPEG&#125;;</span><br><span class="line">[imageOutputsetOutputSettings:setting];</span><br><span class="line">//5.添加输入数据对象和输出对象到会话中</span><br><span class="line"><span class="keyword">if</span>([sessioncanAddInput:captureInput]) &#123;</span><br><span class="line">[sessionaddInput:captureInput];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>([sessioncanAddOutput:imageOutput]) &#123;</span><br><span class="line">[sessionaddOutput:imageOutput];</span><br><span class="line">&#125;</span><br><span class="line">//6.创建视频预览图层</span><br><span class="line">AVCaptureVideoPreviewLayer*videoLayer =</span><br><span class="line">[[AVCaptureVideoPreviewLayeralloc]initWithSession:session];</span><br><span class="line">self.view.layer.masksToBounds=YES;</span><br><span class="line">videoLayer.frame=self.view.bounds;</span><br><span class="line">videoLayer.videoGravity=AVLayerVideoGravityResizeAspectFill;</span><br><span class="line">[self.view.layeraddSublayer:videoLayer];</span><br><span class="line">//这里需要设置相机开始捕捉画面</span><br><span class="line">[sessionstartRunning];//开始捕捉</span><br></pre></td></tr></table></figure>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -238,11 +168,6 @@
                     </p>
                 
                 
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
-                
 
             </section>
         
@@ -252,11 +177,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/iOS/"># iOS</a>
-                    
                         <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
                         <a href="/tags/%E6%80%BB%E7%BB%93/"># 总结</a>
+                    
+                        <a href="/tags/iOS/"># iOS</a>
                     
                         
                 </span>
@@ -283,11 +208,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

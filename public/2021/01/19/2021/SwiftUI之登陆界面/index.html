@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -16,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -32,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -49,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -63,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -71,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -107,7 +95,6 @@
             <div class="container">
     
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -135,7 +122,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>昨天捣鼓了下新出的SwiftUI的使用，绘制了一个登陆页面，但是在做登陆完成跳转的时候犯了难，网上介绍的都是利用NavigationView或者NavigationLink进行页面的跳转，但是，在登陆页面的时候，将登陆页面做成根页面进行跳转，总觉得很奇怪，虽然按着方法push跳转后返回按钮能隐藏掉，但是，在栈里面，根页面还是存在了，并且是登陆页面，所以想用一下其他的方法，于是找到了一个利用ObservableObject协议来实现重绘View的一个方法。</p>
 <p>那，我们的目标就来了，需求就是：</p>
 <p>1.在登陆页面登陆成功时，直接跳转到首页，不用push的方式去跳转；<br>2.后续进行push跳转时，根页面是首页；<br>3.用户已经登陆，再进入APP时，直接到首页；</p>
@@ -156,7 +143,7 @@
 <p>APP显示的也是这个View，由他来判断是显示那个页面，同时他持有一个“CenterLogin”的类，来交给登陆页，告诉自己什么时候重新绘制页面，在init的方法里面，可以进行判断，用户是否是已经登陆过的，如果已经登陆过直接绘制首页。</p>
 <p>到此，我们的功能也就全部实现完成了，指的注意的是”ObservableObject”这个类，在这个类是SwiftUI框架所包含的，所有的类都可以调用，实现了这个协议的类，在类里面所用“Published”关键字声明的属性，在属性改变时，可使拥有此类实例的视图重新调用body属性，也就是可以重新绘制界面。</p>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -178,11 +165,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -222,10 +204,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>

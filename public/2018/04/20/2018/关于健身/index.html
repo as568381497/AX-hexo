@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%81%A5%E8%BA%AB%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E6%80%BB%E7%BB%93%E5%B0%B1%EF%BC%9A"><span class="toc-text">关于健身的方法，总结就：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E5%AE%8C%E4%BA%86%E9%A5%AE%E9%A3%9F%EF%BC%8C%E6%9D%A5%E8%AF%B4%E8%AF%B4%E5%85%B7%E4%BD%93%E7%9A%84%E9%94%BB%E7%82%BC%EF%BC%8C%E8%AF%B4%E9%81%93%E9%94%BB%E7%82%BC%EF%BC%8C%E6%88%91%E6%9D%A5%E7%BA%A0%E6%AD%A3%E5%87%A0%E4%B8%AA%E8%AF%AF%E5%8C%BA%EF%BC%9A"><span class="toc-text">说完了饮食，来说说具体的锻炼，说道锻炼，我来纠正几个误区：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%EF%BC%8C%E5%86%8D%E7%BB%99%E4%B8%80%E7%82%B9%E7%A6%8F%E5%88%A9%EF%BC%8C%E7%BA%A0%E6%AD%A3%E4%B8%A4%E4%B8%AA%E8%AF%AF%E5%8C%BA%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">最后，再给一点福利，纠正两个误区，如下：</span></a></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>关于健身，之前是我一个朋友要我写一下，但是我想的是我一个只是喜欢健身的人，给不了别人什么意见，网上有很多大神可以请教，没我什么事情，但是后来看在网上说的一些误区，就想着写一下写一下有些基础的心得分享，就只是一些关于健身的知识分享。</p>
 <p>说到健身，为什么要健身。其实，我觉得普通人健身的目的，或者说作用，就两个，一个是想要一个好的身材，不管是男生还是女生，另外一个是想要一个好的身体素质，这也是我的但是决定健身的想法。特别是我现在做的工作，我觉得我需要有一个好的身体才行。</p>
 <p>其实，当你决定健身之后，坚持健身下来，你会发现，带来的好处不止这两个，工作累的时候，或者说压抑的时候，需要发泄，而运动，我认为是不二之选，既能锻炼身体，又能发泄放松，何乐而不为。还有你坚持健身下来，你会发现自己的状态会很不一样，其中包括了自信和自律。</p>
@@ -214,7 +144,7 @@
 <p>关于蛋白粉，网上的说法有好有坏，我的态度是持中立，不好也不坏吧，不过我是不喜欢吃的，还是吃饭好。</p>
 <h2 id="最后，再给一点福利，纠正两个误区，如下："><a href="#最后，再给一点福利，纠正两个误区，如下：" class="headerlink" title="最后，再给一点福利，纠正两个误区，如下："></a>最后，再给一点福利，纠正两个误区，如下：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、“无论男女老少，只要晚上不吃饭，就能减肥”，这个肯定是错的，当然这个也可能减</span><br><span class="line">下来，但是关键是，你觉得你减肥减下来后，身体还正常吗？还有，这种方法反弹也</span><br><span class="line">不稳定的。</span><br><span class="line">2、“吃了XXX，7天瘦10斤不是梦”，我们减肥减下来的一般是10斤脂肪，二、而这个里</span><br><span class="line">面减下来的可能是4斤肌肉，1.5斤粪便，3斤水，1.5斤脂肪。</span><br></pre></td></tr></table></figure>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -236,11 +166,6 @@
                         <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
                 
 
             </section>
@@ -278,11 +203,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

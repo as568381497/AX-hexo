@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Chen Xin">
-
-
 
 
 
@@ -18,7 +12,7 @@
 
 
 
-    <link rel="icon" href="/favicon.jpg">
+    <link rel="icon" href="/favicon.png">
 
 
 
@@ -34,15 +28,6 @@
     
     <script src="/js/script.js"></script>
     
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
 
 
 <meta name="generator" content="Hexo 6.0.0"></head>
@@ -51,7 +36,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -65,6 +50,7 @@
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
+
         </div>
     </nav>
 
@@ -73,7 +59,7 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
@@ -109,69 +95,13 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%87%AA%E5%8A%A8%E8%AE%A1%E7%AE%97%E6%97%A5%E6%9C%9F%EF%BC%9A"><span class="toc-text">1.自动计算日期：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%8E%E5%8F%B0%E6%92%AD%E6%94%BE"><span class="toc-text">2.后台播放</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%9C%A8myApp-Info-plist%E4%B8%AD%E6%B7%BB%E5%8A%A0UIBackgroundModes%E9%94%AE%E5%80%BC%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%AD%90%E9%94%AE%E5%80%BC%E4%B8%BAaudio%E3%80%82"><span class="toc-text">1.在myApp-Info.plist中添加UIBackgroundModes键值，添加子键值为audio。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%84%B6%E5%90%8E%E5%9C%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%85%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%9C%80%E5%A5%BD%E5%9C%A8AppDelegate%E9%87%8C%E9%9D%A2%E5%8A%A0%E5%85%A5%EF%BC%9A"><span class="toc-text">2.然后在程序中添加入下代码，最好在AppDelegate里面加入：</span></a></li></ol></li></ol>
+            </div>
+        </div>
     
-
     
     <article class="post-wrap">
         <header class="post-header">
@@ -199,7 +129,7 @@
             
         </header>
 
-        <div class="post-content">
+        <section class="post-content">
             <p>这段时间，我完成了第二款和第三款APP的开发。</p>
 <p>第二个应用是关于王者荣耀的，属于新闻类的APP吧，主要的功能是展示资讯信息和模拟器的实现，而后来，因为模拟器用了网上的WEB页面，所以跳过了这个麻烦的部分。而对与框架，整个框架的搭建跟主流的应用一样，导航栏页面有四个嵌套的子页面，而子页面里面再嵌套子页面，以前想复杂了，现在做完了发现其实很简单，这里也遇到了一个坑，我是用的pageViewController做的，在滑动页面切换的时候，pageViewController每一次滑动都会加载前一个页面和后一个页面，也就是说，他滑动的时候，会加载前一个页面，还有后一个页面，展示的这个页面是在之前就加载好了的，所以不是加载的当前展示的这个页面，要调节好这个顺序，还有就是pageViewController在滑动的时候，要获取当前这个子页面的属性的话，要调用pageViewController的Will的方法获取。</p>
 <p>获取数据的时候需要考虑获取数据的状态和顺序，特别是用View展示的时候需要考虑到复用或者数据重复发送的时候，数据怎么展示，每次获取到数据，就需要刷新View，这里刷新要在主线程里面刷新。</p>
@@ -214,7 +144,7 @@
 <h2 id="2-后台播放"><a href="#2-后台播放" class="headerlink" title="2.后台播放"></a>2.后台播放</h2><p>这是一段很神奇的代码，除了实现后台播放，还顺带实现了静音播放，GET</p>
 <h3 id="1-在myApp-Info-plist中添加UIBackgroundModes键值，添加子键值为audio。"><a href="#1-在myApp-Info-plist中添加UIBackgroundModes键值，添加子键值为audio。" class="headerlink" title="1.在myApp-Info.plist中添加UIBackgroundModes键值，添加子键值为audio。"></a>1.在myApp-Info.plist中添加UIBackgroundModes键值，添加子键值为audio。</h3><h3 id="2-然后在程序中添加入下代码，最好在AppDelegate里面加入："><a href="#2-然后在程序中添加入下代码，最好在AppDelegate里面加入：" class="headerlink" title="2.然后在程序中添加入下代码，最好在AppDelegate里面加入："></a>2.然后在程序中添加入下代码，最好在AppDelegate里面加入：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSession*session=[AVAudioSessionsharedInstance];</span><br><span class="line">[sessionsetActive:YESerror:nil];</span><br><span class="line">[sessionsetCategory:AVAudioSessionCategoryPlaybackerror:nil];</span><br><span class="line">3,突发事件，中断播放（打电话）</span><br><span class="line"></span><br><span class="line">–&gt;在通知中心注册一个事件中断的通知：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//回调两次，开始和结束，最好写在AppDelegate里面</span><br><span class="line">[[NSNotificationCenter defaultCenter] addObserver:self selector:</span><br><span class="line">@selector(handleInterreption:) name:AVAudioSessionInterruptionNo</span><br><span class="line">tification object:[AVAudioSession sharedInstance]];</span><br><span class="line">--&gt;实现接收到中断通知时的方法</span><br><span class="line">//处理中断事件</span><br><span class="line">-(void)handleInterreption:(NSNotification *)sender</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(_played)</span><br><span class="line">&#123;</span><br><span class="line">//操作一</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">//操作二</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        </div>
+        </section>
 
         
             <section class="post-copyright">
@@ -237,11 +167,6 @@
                     </p>
                 
                 
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
-                
 
             </section>
         
@@ -251,11 +176,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/iOS/"># iOS</a>
-                    
                         <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
                         <a href="/tags/%E6%80%BB%E7%BB%93/"># 总结</a>
+                    
+                        <a href="/tags/iOS/"># iOS</a>
                     
                         
                 </span>
@@ -282,11 +207,9 @@
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
-
     </div>
 </body>
 </html>
->>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54
