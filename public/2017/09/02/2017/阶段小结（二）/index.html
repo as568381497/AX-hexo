@@ -1,0 +1,292 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>阶段小结（二） | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">阶段小结（二）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 2, 2017&nbsp;&nbsp;20:46:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%B0%8F%E7%BB%93/">小结</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>这段时间，我完成了第二款和第三款APP的开发。</p>
+<p>第二个应用是关于王者荣耀的，属于新闻类的APP吧，主要的功能是展示资讯信息和模拟器的实现，而后来，因为模拟器用了网上的WEB页面，所以跳过了这个麻烦的部分。而对与框架，整个框架的搭建跟主流的应用一样，导航栏页面有四个嵌套的子页面，而子页面里面再嵌套子页面，以前想复杂了，现在做完了发现其实很简单，这里也遇到了一个坑，我是用的pageViewController做的，在滑动页面切换的时候，pageViewController每一次滑动都会加载前一个页面和后一个页面，也就是说，他滑动的时候，会加载前一个页面，还有后一个页面，展示的这个页面是在之前就加载好了的，所以不是加载的当前展示的这个页面，要调节好这个顺序，还有就是pageViewController在滑动的时候，要获取当前这个子页面的属性的话，要调用pageViewController的Will的方法获取。</p>
+<p>获取数据的时候需要考虑获取数据的状态和顺序，特别是用View展示的时候需要考虑到复用或者数据重复发送的时候，数据怎么展示，每次获取到数据，就需要刷新View，这里刷新要在主线程里面刷新。</p>
+<p>另外，高度自适应，对于tableViewCell，tableView有专门的属性控制自适应，是一个估计的值，自己估计下写进去就好了。但是值是一回事，需要搭配里面的view来做自适应，里面的View在设置约束的时候，要看、好好考虑，最好能占满整个Cell，因为会有cell的复用，在滑动tableView的时候，Cell每次复用都会计算。</p>
+<p>也是在这个里面接触了Web和移动端的混合开发，我喜欢用Css，因为简单啊<del>哈哈</del>js还没看~后面去花时间看看，webView在加载出来web页面，这里也需要注意一点，需要修改web页面的话，最好在加载完成后在修改，不然会有很多东西使用不了，或者显示不完整，web页面里面。</p>
+<p>还有就是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有问题一定要沟通，沟通！！！</span><br></pre></td></tr></table></figure>
+
+<p>小福利：</p>
+<h2 id="1-自动计算日期："><a href="#1-自动计算日期：" class="headerlink" title="1.自动计算日期："></a>1.自动计算日期：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//输入天数返回当天到后面若干天的日期</span><br><span class="line">- (NSMutableArray*)GetTomorrowDay:(int)day</span><br><span class="line">&#123;</span><br><span class="line">NSDate*date = [NSDatedate];</span><br><span class="line">NSMutableArray*arr = [NSMutableArrayarray];</span><br><span class="line">NSCalendar*gregorian = [[NSCalendaralloc]initWithCalendarIdenti</span><br><span class="line">fier:NSCalendarIdentifierGregorian];</span><br><span class="line">NSDateComponents*components = [gregoriancomponents:NSCalendarUnit</span><br><span class="line">Weekday|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay</span><br><span class="line">fromDate:date];</span><br><span class="line">NSDateFormatter*formater = [[NSDateFormatteralloc]init];</span><br><span class="line">[formatersetDateFormat:@<span class="string">&quot;MM-dd&quot;</span>];</span><br><span class="line">NSString*curTime = [formaterstringFromDate:date];</span><br><span class="line">[arraddObject:curTime];</span><br><span class="line"><span class="keyword">for</span>(inti =1; i</span><br><span class="line">&#123;</span><br><span class="line">[componentssetDay:([componentsday]+1)];</span><br><span class="line">NSDate*beginningOfWeek = [gregoriandateFromComponents:components]</span><br><span class="line">;</span><br><span class="line">NSDateFormatter*dateday = [[NSDateFormatteralloc]init];</span><br><span class="line">[datedaysetDateFormat:@<span class="string">&quot;MM-dd&quot;</span>];</span><br><span class="line">[arraddObject:[datedaystringFromDate:beginningOfWeek]];</span><br><span class="line">&#125;</span><br><span class="line">returnarr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-后台播放"><a href="#2-后台播放" class="headerlink" title="2.后台播放"></a>2.后台播放</h2><p>这是一段很神奇的代码，除了实现后台播放，还顺带实现了静音播放，GET</p>
+<h3 id="1-在myApp-Info-plist中添加UIBackgroundModes键值，添加子键值为audio。"><a href="#1-在myApp-Info-plist中添加UIBackgroundModes键值，添加子键值为audio。" class="headerlink" title="1.在myApp-Info.plist中添加UIBackgroundModes键值，添加子键值为audio。"></a>1.在myApp-Info.plist中添加UIBackgroundModes键值，添加子键值为audio。</h3><h3 id="2-然后在程序中添加入下代码，最好在AppDelegate里面加入："><a href="#2-然后在程序中添加入下代码，最好在AppDelegate里面加入：" class="headerlink" title="2.然后在程序中添加入下代码，最好在AppDelegate里面加入："></a>2.然后在程序中添加入下代码，最好在AppDelegate里面加入：</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">AVAudioSession*session=[AVAudioSessionsharedInstance];</span><br><span class="line">[sessionsetActive:YESerror:nil];</span><br><span class="line">[sessionsetCategory:AVAudioSessionCategoryPlaybackerror:nil];</span><br><span class="line">3,突发事件，中断播放（打电话）</span><br><span class="line"></span><br><span class="line">–&gt;在通知中心注册一个事件中断的通知：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//回调两次，开始和结束，最好写在AppDelegate里面</span><br><span class="line">[[NSNotificationCenter defaultCenter] addObserver:self selector:</span><br><span class="line">@selector(handleInterreption:) name:AVAudioSessionInterruptionNo</span><br><span class="line">tification object:[AVAudioSession sharedInstance]];</span><br><span class="line">--&gt;实现接收到中断通知时的方法</span><br><span class="line">//处理中断事件</span><br><span class="line">-(void)handleInterreption:(NSNotification *)sender</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>(_played)</span><br><span class="line">&#123;</span><br><span class="line">//操作一</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">//操作二</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2017/09/02/2017/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/">http://axibreaking.ml/2017/09/02/2017/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/iOS/"># iOS</a>
+                    
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
+                    
+                        <a href="/tags/%E6%80%BB%E7%BB%93/"># 总结</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/10/23/2017/Hello%20World/">Hello World</a>
+            
+            
+            <a class="next" rel="next" href="/2017/08/16/2017/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">阶段小结（一）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
+>>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54

@@ -1,0 +1,315 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen Xin">
+
+
+
+
+
+<title>个人博客搭建 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.jpg">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西的小窝</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西的小窝</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">个人博客搭建</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 10, 2017&nbsp;&nbsp;20:46:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%85%B6%E4%BB%96%E6%8A%80%E6%9C%AF/">其他技术</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>这个博客从开始到搭建完成，大概历时一个月左右，综合使用了：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>、<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>、<a target="_blank" rel="noopener" href="https://www.netlify.com/">Netlify</a>、<a target="_blank" rel="noopener" href="https://www.freenom.com/zh/index.html?lang=zh">Freenom</a>这四个平台。<br>这四个平台，Hexo是一款容易上手，并且高效的博客框架。GitHub是一款主流的代码托管平台。Freenom是国外的一个提供免费的域名申请的平台。Netlify提供了自动生成静态的Https网站，提供自带的DNS域名解析。所以，我们的搭建流程是，先用Hexo在本地搭建起来博客的框架，然后将本地的代码托管至GitHub，然后将GitHub的代码提交到Netlify生成静态的Https网站，然后在Freenom申请自己喜欢的自定义域名，将Netlify生成的域名替换为我们申请的域名，然后用Nettify自带的DNS解析为自定义的域名加上Https。</p>
+<p>接下来我会慢慢一步一步重现我搭建的过程。</p>
+<h2 id="首先我们需要到Hexo为本地搭建博客框架。"><a href="#首先我们需要到Hexo为本地搭建博客框架。" class="headerlink" title="首先我们需要到Hexo为本地搭建博客框架。"></a>首先我们需要到Hexo为本地搭建博客框架。</h2><p>在安装Hexo之前，我们需要在本地安装Node.js和Git,以MAC为例，在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Git。"><a href="#安装Git。" class="headerlink" title="安装Git。"></a>安装Git。</h3><p>安装Node.js需要三步:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.curl https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br><span class="line">2.wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br><span class="line">3.nvm install stable</span><br></pre></td></tr></table></figure>
+
+<p>在安装这两个没问题后，再在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>就可以成功安装Hexo了。</p>
+<p>接下来，我们要搭建Hexo，这个也需要三步：</p>
+<h3 id="搭建Hexo"><a href="#搭建Hexo" class="headerlink" title="搭建Hexo"></a>搭建Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.hexo init &lt;指定的文件夹&gt;</span><br><span class="line">2. <span class="built_in">cd</span> &lt;指定的文件夹&gt;</span><br><span class="line">3. npm install</span><br></pre></td></tr></table></figure>
+
+<p>到这里，我们的Hexo就搭建完成了，搭建完成后本地的具体的配置信息在这这里。</p>
+<h2 id="将下一步将我们的Hexo与GitHub关联起来"><a href="#将下一步将我们的Hexo与GitHub关联起来" class="headerlink" title="将下一步将我们的Hexo与GitHub关联起来"></a>将下一步将我们的Hexo与GitHub关联起来</h2><p>我们需要将我们本地的Hexo代码提交到GitHub,此处省略怎么注册GitHub的账号，以及怎么建立一个Git的仓库。<br>在我们在Git创建好后，我们现在将下一步将我们的Hexo与GitHub关联起来，打开站点的配置文件_config.yml，翻到最后修改为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line"><span class="built_in">type</span>: git</span><br><span class="line">repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+
+<p>参考如下：</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/1.png" alt="配置文件"></p>
+<p>这时，我们在终端进入Hexo的文件夹后再输入下面四条命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.npm install hexo-deployer-git --save</span><br><span class="line">2.hexo clean</span><br><span class="line">3.hexo g</span><br><span class="line">4.hexo d</span><br></pre></td></tr></table></figure>
+
+<p>至此，我们完成了一半了，已经你的博客已经可以上线，可以访问了，但是，我们现在来点不一样的，已定义域名，以及添加Https。</p>
+<h2 id="申请域名"><a href="#申请域名" class="headerlink" title="申请域名"></a>申请域名</h2><p>接下来，我们去这里Freenom，这个网站是支持中文的，可以调整为中文显示，一样，我们需要申请个账号，注意，这个网站需要翻墙才能进去。在我们注册完账号之后，我们可以在这里申请一个顶级的域名，是免费的，但是期限最长只有一年，后面需要自己再续期。在“Services“里面点击“Register a New Domain”跳转到域名申请页面，填写自己喜欢的域名，然后搜索出来的绿色的都是可以用的，跟购物一样，选择好域名后，在结算页面，期限选择一年，然后点击确定，在我们的邮箱里面确认后，我们就可以拥有这个域名了。在申请完域名后，可以在“My Domains”中找到我们刚刚申请的域名。</p>
+<h2 id="把github上面的代码我们利用Netlify生成属于Netlify的页面"><a href="#把github上面的代码我们利用Netlify生成属于Netlify的页面" class="headerlink" title="把github上面的代码我们利用Netlify生成属于Netlify的页面"></a>把github上面的代码我们利用Netlify生成属于Netlify的页面</h2><p>首先，一样注册账号，可以选择用GitHub的账号注册，按照提示一步一步的走，注册成功后，在主界面点击“New site from Git”生成新的Git页面,</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/2.png" alt="第一步"></p>
+<p>根据提示一步一的来，我们选择下面的“GitHub”,点击后需要获取我们GitHub的权限，点击确定。</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/3.png" alt="第二步"></p>
+<p>这一步我们选择需要生成的分支，这里我们会看到我们托管到GitHub的Hexo的项目，选择这个，进入下一步。</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/4.png" alt="第三步"></p>
+<p>这一步直接点确定进入下一步，等待系统生成页面就好了。<br>当生成页面后，我们基于Netlify的的博客页面就搭建好了，这个时候是可以直接访问的，但是并不是我们的自定义域名，接下来我们换成自定义的域名。</p>
+<h2 id="修改服务器"><a href="#修改服务器" class="headerlink" title="修改服务器"></a>修改服务器</h2><p>我们先在本地的Hexo项目里面添加一个文件，在blog/source目录下，创建一个记事本文件，输入你的域名，对，只要写进你自己的域名即可。如果带有www，那么以后访问的时候必须带有www完整的域名才可以访问，但如果不带有www，以后访问的时候带不带www都可以访问。<br>然后在Netlify里面找到“Settings”,在里面点击左侧栏目的“Domain management”，在“Custom domains”中填写自己在Freenom中申请的域名。<br>去到Freenom在自己的域名设置里面，找到“Nameservers”，将服务器的名称修改为如下：</p>
+<p><img src="/images/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/5.png" alt="服务器名称"></p>
+<p>然后等待一个小时左右服务器生效。<br>生效后，再在“Domain management”下面的“HTTPS”点击检测按钮，检测服务器是否配置成功，然后后面就很简单了，系统会自动生成DNS的域名解析，然后生成Https的证书。</p>
+<p>到此，大功告成，我们的博客页面就搭建完成了。</p>
+<p>PS：还有个小东西，在GitHub里面，我们托管的Hexo项目里面，找到设置页，GitHub也提供了自定义域名的功能，将我们刚刚申请的域名填入，这样，在访问你GitHub为域名的页面的时候，会自动跳转到你自定义域名的页面。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2017/11/10/2017/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">http://axibreaking.ml/2017/11/10/2017/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
+                    
+                        <a href="/tags/%E6%90%AD%E5%BB%BA/"># 搭建</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2018/03/13/2018/%E5%A4%A7%E7%90%86%E8%AE%B0%E5%BF%86/">大理记忆</a>
+            
+            
+            <a class="next" rel="next" href="/2017/10/23/2017/Hello%20World/">Hello World</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
+>>>>>>> 25b5224c4ec739af5a1fc2e26b8b483dca6f5f54
