@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>WEB端接入阿里多人音视频通信 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F"><span class="toc-text">1.序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A6%82%E8%BF%B0"><span class="toc-text">2.概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A5%E5%85%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">3.接入流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-SDK%E6%8E%A5%E5%85%A5"><span class="toc-text">3.1 SDK接入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-SDK%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.2 SDK功能实现</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">WEB端接入阿里多人音视频通信</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 30, 2020&nbsp;&nbsp;15:32:07</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/WEB/">WEB</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <section class="post-content">
+            <h3 id="1-序"><a href="#1-序" class="headerlink" title="1.序"></a>1.序</h3><p>前段时间做完了一个项目，其中有个视频会议的功能，其中要实现的核心是多对多音视频通话功能，用介入第三方SDK，也就是接入了阿里的音视频RTC实现，觉得还是可以记录一下。</p>
+<p>当时其实考察了很多其他的SDK，比如腾讯的视频会议，还有阿里的视频会议，但是，实际操作完后，发现这两个SDK还在开发中，不完善，而且其实具体的实现方式，还是跳转回他们自己视频会议的页面，觉得这样的接入方式限制太多，于是考虑自己实现所有功能，也就是换了阿里的音视频会议的RTC。</p>
+<h3 id="2-概述"><a href="#2-概述" class="headerlink" title="2.概述"></a>2.概述</h3><p>因为涉及到的场景是多对多人视频通话，阿里这边的实现方式是，通过一个key值，可以理解为一个房间号，或者通道号，把进入这个房间（通道）中的人的音视频信息共享，都向这个房间传音视频流，同时从这个房间拉取别人的音视频流。</p>
+<h3 id="3-接入流程"><a href="#3-接入流程" class="headerlink" title="3.接入流程"></a>3.接入流程</h3><p>在这里接入流程有两个，第一个是SDK的接入流程，另外一个是功能实现的流程。</p>
+<h4 id="3-1-SDK接入"><a href="#3-1-SDK接入" class="headerlink" title="3.1 SDK接入"></a>3.1 SDK接入</h4><p>官方给的SDK的接入流程是三步：<br>1.开通服务<br>2.创建应用<br>3.集成客户端</p>
+<p>在这里，我主要是再介绍下这里面一些注意的地方:<br>1.第一个是开通服务后，测试是不收费的，也就是说，可以先接入调试，不需要先付费，<br>2.第二步，需要在阿里内置的控制台创建一个应用，名字可随意，主要是生成完应用后，会给你一个app key 和 app id ，这两个很重要，是接入SDK的凭证，做完这两步，然后在下载页面，直接下载自己平台的SDK就好了，我这边是下载的是WEB端的SDK。</p>
+<p>接入SDK后，也就是将SDK包下载下来，我这边是WEB端，主要是三步：<br>1.首先下载SDK，然后将AliWebRtcSDK包保存到本地项目下<br>2.最后在项目相应的前端页面文件中3.<br>3.对aliyun-webrtc-sdk.js文件进行引用</p>
+<h4 id="3-2-SDK功能实现"><a href="#3-2-SDK功能实现" class="headerlink" title="3.2 SDK功能实现"></a>3.2 SDK功能实现</h4><p>1.接入SDK后，首先要初始化SDK,获得SDK的对象实例。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var aliWebrtc = new AliRtcEngine();</span><br></pre></td></tr></table></figure>
+<p>推荐在进入视频页面的时候，先预览下视频状态，也就是预览视频,预览成功时，正常执行，预览失败，则说明有其他问题，跳出提示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aliWebrtc.startPreview(</span><br><span class="line">video    // html中的video元素</span><br><span class="line">).<span class="keyword">then</span>(()=&gt;&#123;</span><br><span class="line">&#125;).catch((error) =&gt; &#123;</span><br><span class="line">// 预览失败</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>2.加入频道,预览成功后，加入制定的房间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">aliWebrtc.joinChannel(&#123;</span><br><span class="line">userid,         // 用户ID</span><br><span class="line">channel,        // 频道</span><br><span class="line">appid,          // 应用ID</span><br><span class="line">nonce,          // 随机码</span><br><span class="line">timestamp,      // 时间戳</span><br><span class="line">gslb,           // gslb服务地址</span><br><span class="line">token,          // 令牌</span><br><span class="line">&#125;,displayName).<span class="keyword">then</span>(()=&gt;&#123;</span><br><span class="line">// 入会成功</span><br><span class="line">&#125; ,(error)=&gt;&#123;</span><br><span class="line">// 入会失败，打印错误内容，可以看到失败原因</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>将我们之前申请的appid 和appkey放上去，然后根据文档提示，将参数补全，这里要重点说下两个参数，一个是timestamp,他是说明你这个加入频道的请求是否过期，从你发出请求的那个时间开始，过期了是会进入房间失败的，第二个是token，他是有其他的参数一起生成，如果进入频道失败，很大的可能就是这个参数生成错误。</p>
+<p>3.发布或取消发布本地流。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//开始推音视频流</span><br><span class="line">aliWebrtc.publish().<span class="keyword">then</span>(()=&gt;&#123;</span><br><span class="line">&#125; ,(error)=&gt;&#123;</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br><span class="line">//取消推流</span><br><span class="line">aliWebrtc.unPublish().<span class="keyword">then</span>(()=&gt;&#123;</span><br><span class="line">&#125; ,(error)=&gt;&#123;</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>当我们进入房间成功后，就可以设置是否推流了。</p>
+<p>4.订阅onPublisher回调或onUnPublisher回调</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//拉取音视频流</span><br><span class="line">aliWebrtc.on(<span class="string">&#x27;onPublisher&#x27;</span>,(publisher) =&gt;&#123;</span><br><span class="line">//远程发布者userId</span><br><span class="line">console.log(publisher.userId);</span><br><span class="line">//远程发布名字</span><br><span class="line">console.log(publisher.displayName);</span><br><span class="line">//远程流内容，streamConfigs是数组格式</span><br><span class="line">console.log(publisher.streamConfigs);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//用户取消推流</span><br><span class="line">aliWebrtc.on(<span class="string">&#x27;onUnPublisher&#x27;</span>,(publisher) =&gt;&#123;</span><br><span class="line">//远程发布者userId</span><br><span class="line">console.log(publisher.userId);</span><br><span class="line">//远程发布名字</span><br><span class="line">console.log(publisher.displayName);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里，可以让用户自己选择是否开始打开视频（是否推流），然后拉取别的用户的音视频流，你需要根据用户数量来设置展示视频的view，然后在拉取视频流的回调里面将回调里面的内容放在view里面展示，就可以了，然后在“onUnPublisher”的回调里面，获取到那个用户取消推流了，就把那个用户取消掉就好了,这里说下，进入频道传的那个“userid”就是在这里用的，最好用唯一的，不然会出现奇观的问题。</p>
+<p>5.订阅或取消订阅远程流</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">aliWebrtc.subscribe(userId).<span class="keyword">then</span>((userId)=&gt;&#123;</span><br><span class="line">aliWebrtc.setDisplayRemoteVideo(</span><br><span class="line">userId,       // 用户ID</span><br><span class="line">video,        // html中用于显示stream对象的video元素</span><br><span class="line">1             // 1表示摄像头流（大流和小流），2表示屏幕分享流</span><br><span class="line">)</span><br><span class="line">&#125;,(error)=&gt;&#123;</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br><span class="line">//取消订阅</span><br><span class="line">aliWebrtc.unSubscribe(userId).<span class="keyword">then</span>(() =&gt; &#123;</span><br><span class="line">&#125;,(error)=&gt;&#123;</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>可以在这个里面拿到数据后，用”setDisplayRemoteVideo”指定播放view，开始播放</p>
+<p>6.离开频道</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aliWebrtc.leaveChannel().<span class="keyword">then</span>(()=&gt;&#123;</span><br><span class="line">&#125; ,(error)=&gt;&#123;</span><br><span class="line">console.log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>7.其他<br>打开/关闭摄像头</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//关闭摄像头</span><br><span class="line">this.isOpenVieo = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (this.isScreen == <span class="literal">true</span>) &#123;</span><br><span class="line">aliWebrtc.configLocalScreenPublish = <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">aliWebrtc.configLocalAudioPublish = <span class="literal">false</span>;</span><br><span class="line">aliWebrtc.configLocalCameraPublish = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">aliWebrtc.unPublish().<span class="keyword">then</span>(() =&gt; &#123;&#125;, (error) =&gt; &#123;</span><br><span class="line">//                    console.log(error.message);</span><br><span class="line">&#125;);</span><br><span class="line">//打开摄像头</span><br><span class="line">this.isOpenVieo = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (this.isScreen == <span class="literal">true</span>) &#123;</span><br><span class="line">aliWebrtc.configLocalScreenPublish = <span class="literal">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">aliWebrtc.configLocalAudioPublish = <span class="literal">true</span>;</span><br><span class="line">aliWebrtc.configLocalCameraPublish = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">aliWebrtc.publish().<span class="keyword">then</span>(() =&gt; &#123;&#125;, (error) =&gt; &#123;</span><br><span class="line">//                    console.log(error.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打开/关闭 共享桌面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (this.isScreen) &#123;</span><br><span class="line">//关闭共享</span><br><span class="line">this.isScreen = <span class="literal">false</span>;</span><br><span class="line">aliWebrtc.configLocalAudioPublish = <span class="literal">true</span>;</span><br><span class="line">aliWebrtc.configLocalCameraPublish = <span class="literal">true</span>;</span><br><span class="line">aliWebrtc.configLocalScreenPublish = <span class="literal">false</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">//打开共享</span><br><span class="line">this.isScreen = <span class="literal">true</span>;</span><br><span class="line">aliWebrtc.configLocalAudioPublish = <span class="literal">false</span>;</span><br><span class="line">aliWebrtc.configLocalCameraPublish = <span class="literal">false</span>;</span><br><span class="line">aliWebrtc.configLocalScreenPublish = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//热切换</span><br><span class="line">aliWebrtc.publish().<span class="keyword">then</span>((res) =&gt; &#123;</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">//                    console.log(<span class="string">&quot;发布流成功&quot;</span>);</span><br><span class="line">this.isOpenVieo = <span class="literal">true</span>;</span><br><span class="line">&#125;, 2000)</span><br><span class="line"></span><br><span class="line">&#125;, (error) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">console.log(<span class="string">&quot;[推流失败]&quot;</span> + error.message, <span class="string">&quot;danger&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>错误处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//error 处理</span><br><span class="line">aliWebrtc.on(<span class="string">&quot;onError&quot;</span>, (error) =&gt; &#123;</span><br><span class="line">//10010 屏幕共享未知错误</span><br><span class="line">//10011 屏幕共享在选择页面取消选择 屏幕共享被禁止</span><br><span class="line">//10012 屏幕共享在网页底部悬浮窗单击停止共享  屏幕共享已取消</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (error.errorCode == 10012 || error.errorCode == 10011) &#123;</span><br><span class="line">this.isScreen = <span class="literal">true</span>;</span><br><span class="line">this.openScreen();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//console.log(error.errorCode);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>到这里，基本上所有的功能都接入完了，最后，要注意的是，退出频道的时候会有个延迟，在其他用户哪里可能会白屏一会，暂时还没找到原因。</p>
+
+        </section>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2020/09/30/2021/WEB%E7%AB%AF%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E5%A4%9A%E4%BA%BA%E9%9F%B3%E8%A7%86%E9%A2%91%E9%80%9A%E4%BF%A1/">http://axibreaking.ml/2020/09/30/2021/WEB%E7%AB%AF%E6%8E%A5%E5%85%A5%E9%98%BF%E9%87%8C%E5%A4%9A%E4%BA%BA%E9%9F%B3%E8%A7%86%E9%A2%91%E9%80%9A%E4%BF%A1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/WEB/"># WEB</a>
+                    
+                        <a href="/tags/SDK/"># SDK</a>
+                    
+                        <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"># 音视频</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/12/16/2021/iOS-%E6%A8%A1%E6%8B%9F%E5%AE%9A%E4%BD%8D/">iOS 探索——模拟定位</a>
+            
+            
+            <a class="next" rel="next" href="/2019/10/28/2019/py%E6%96%87%E4%BB%B6%E6%89%93%E5%8C%85/">py文件打包及web打开本地程序</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+</html>

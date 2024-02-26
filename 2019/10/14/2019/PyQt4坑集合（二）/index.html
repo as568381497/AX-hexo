@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
 
-<title>PyQt4坑(特性)集合（二） | AXI</title>
+<title>PyQt4坑(特性)集合（二） | AXIHOME</title>
 
 
 
@@ -29,7 +30,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -97,7 +98,7 @@
         <div id="post-toc" class="post-toc">
             <span class="post-toc-title">catalogue</span>
             <div class="post-toc-content">
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Label-控件中-给图片样式的显示方式"><span class="toc-text">1.Label 控件中 给图片样式的显示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Label-图片的加载"><span class="toc-text">2.Label 图片的加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-控件的边框显示"><span class="toc-text">3.控件的边框显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-获取屏幕大小"><span class="toc-text">4.获取屏幕大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-子控件需要实现父控件paintEvent绘图方法才能显示图片"><span class="toc-text">5.子控件需要实现父控件paintEvent绘图方法才能显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"><span class="toc-text">6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"><span class="toc-text">7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><span class="toc-text">8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Label-%E6%8E%A7%E4%BB%B6%E4%B8%AD-%E7%BB%99%E5%9B%BE%E7%89%87%E6%A0%B7%E5%BC%8F%E7%9A%84%E6%98%BE%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">1.Label 控件中 给图片样式的显示方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Label-%E5%9B%BE%E7%89%87%E7%9A%84%E5%8A%A0%E8%BD%BD"><span class="toc-text">2.Label 图片的加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A7%E4%BB%B6%E7%9A%84%E8%BE%B9%E6%A1%86%E6%98%BE%E7%A4%BA"><span class="toc-text">3.控件的边框显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%8E%B7%E5%8F%96%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F"><span class="toc-text">4.获取屏幕大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AD%90%E6%8E%A7%E4%BB%B6%E9%9C%80%E8%A6%81%E5%AE%9E%E7%8E%B0%E7%88%B6%E6%8E%A7%E4%BB%B6paintEvent%E7%BB%98%E5%9B%BE%E6%96%B9%E6%B3%95%E6%89%8D%E8%83%BD%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87"><span class="toc-text">5.子控件需要实现父控件paintEvent绘图方法才能显示图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%BD%93%E5%AD%90%E6%8E%A7%E4%BB%B6%E6%88%AA%E5%8F%96%E4%BA%86%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%90%8E%E5%9C%A8%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E9%87%8C%E9%9D%A2%E8%B0%83%E7%94%A8%E7%88%B6%E6%8E%A7%E4%BB%B6%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E8%BF%9B%E8%A1%8C%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92"><span class="toc-text">6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E7%88%B6%E6%8E%A7%E4%BB%B6%E5%8E%BB%E6%8E%89%E5%AD%90%E6%8E%A7%E4%BB%B6%E4%B8%8D%E6%98%AF%E7%94%A8%E2%80%9CdeleteLater%E2%80%9D%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E5%8F%AA%E6%98%AF%E5%9C%A8%E7%95%8C%E9%9D%A2%E4%B8%8A%E5%8E%BB%E6%8E%89%E5%AD%90%E6%8E%A7%E4%BB%B6%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E5%86%85%E5%AD%98%E4%B8%AD%E8%BF%98%E5%AD%98%E5%9C%A8%EF%BC%8C%E7%94%A8sip%E7%9A%84%E2%80%9Cdeleter%E2%80%9D%E6%96%B9%E6%B3%95%E5%88%A0%E9%99%A4%E4%B9%9F%E4%B8%8D%E5%AE%89%E5%85%A8%EF%BC%8C%E4%BC%9A%E5%88%A0%E6%8E%89%E4%B8%8D%E5%BA%94%E8%AF%A5%E5%88%A0%E9%99%A4%E7%9A%84%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%BA%90%E7%A0%81%E5%8F%91%E7%8E%B0%EF%BC%8C%E6%BA%90%E7%A0%81%E9%87%8C%E9%9D%A2%E6%98%AF%E7%94%A8"><span class="toc-text">7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E5%9C%A8%E2%80%9Cmain%E2%80%9D%E5%87%BD%E6%95%B0%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E8%BD%AF%E4%BB%B6%E5%AD%98%E5%9C%A8%E7%9A%84%E8%B7%AF%E5%BE%84%E5%8F%8A%E5%A4%96%E9%83%A8%E4%BC%A0%E5%85%A5%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</span></a></li></ol>
             </div>
         </div>
     
@@ -133,21 +134,20 @@
 <h3 id="1-Label-控件中-给图片样式的显示方式"><a href="#1-Label-控件中-给图片样式的显示方式" class="headerlink" title="1.Label 控件中 给图片样式的显示方式"></a>1.Label 控件中 给图片样式的显示方式</h3><p>Background-image：显示方式  原始图片显示   不裁剪<br>Border-image：显示方式  拉伸  完整显示<br>image:显示方式 原始图片 最合适比例显示 </p>
 <h3 id="2-Label-图片的加载"><a href="#2-Label-图片的加载" class="headerlink" title="2.Label 图片的加载"></a>2.Label 图片的加载</h3><p>png：png图片显示可以使用样式或者pixmap（跟jpg加载一样）显示，但是需要先把图片加载为py文件</p>
 <p>⑴. 写入qrc文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE RCC&gt;</span><br><span class="line">&lt;RCC version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;qresource prefix=&quot;/Images&quot;&gt;</span><br><span class="line">&lt;file&gt;time.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;gou.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;default.png&lt;/file&gt;</span><br><span class="line">&lt;/qresource&gt;</span><br><span class="line">&lt;/RCC&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE RCC&gt;</span><br><span class="line">&lt;RCC version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;qresource prefix=&quot;/Images&quot;&gt;</span><br><span class="line">&lt;file&gt;time.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;gou.png&lt;/file&gt;</span><br><span class="line">&lt;file&gt;default.png&lt;/file&gt;</span><br><span class="line">&lt;/qresource&gt;</span><br><span class="line">&lt;/RCC&gt;</span><br></pre></td></tr></table></figure>
 
 <p>⑵. 将qrc文件用PyRcc转换为py文件</p>
 <p>⑶. 调用py文件进行加载</p>
 <p>jpg图片加载： jpg图片加载只能用pixmap加载显示（实际上是画上去）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.disPlayImage.load(self.jpgImageURL)</span><br><span class="line">pixmap = QtGui.QPixmap(self.disPlayImage)</span><br><span class="line">//画上去的显示方式（这是imageView的大小，不拉伸）</span><br><span class="line">scaredPixmap = pixmap.scaled(self.imageView.width(), self.imageView.height(), aspectRatioMode=Qt.KeepAspectRatio)</span><br><span class="line">//pixmap加载图片</span><br><span class="line">self.imageView.setPixmap(scaredPixmap)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self.disPlayImage.load(self.jpgImageURL)</span><br><span class="line">pixmap = QtGui.QPixmap(self.disPlayImage)</span><br><span class="line">//画上去的显示方式（这是imageView的大小，不拉伸）</span><br><span class="line">scaredPixmap = pixmap.scaled(self.imageView.width(), self.imageView.height(), aspectRatioMode=Qt.KeepAspectRatio)</span><br><span class="line">//pixmap加载图片</span><br><span class="line">self.imageView.setPixmap(scaredPixmap)</span><br></pre></td></tr></table></figure>
 
 <h3 id="3-控件的边框显示"><a href="#3-控件的边框显示" class="headerlink" title="3.控件的边框显示"></a>3.控件的边框显示</h3><p>需要添加边框的宽，显示方式，颜色才能显示</p>
-<h3 id="4-获取屏幕大小"><a href="#4-获取屏幕大小" class="headerlink" title="4.获取屏幕大小"></a>4.获取屏幕大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QtGui.QApplication.desktop()</span><br><span class="line">View = desktop.screenGeometry()</span><br></pre></td></tr></table></figure>
+<h3 id="4-获取屏幕大小"><a href="#4-获取屏幕大小" class="headerlink" title="4.获取屏幕大小"></a>4.获取屏幕大小</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QtGui.QApplication.desktop()</span><br><span class="line">View = desktop.screenGeometry()</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-子控件需要实现父控件paintEvent绘图方法才能显示图片"><a href="#5-子控件需要实现父控件paintEvent绘图方法才能显示图片" class="headerlink" title="5.子控件需要实现父控件paintEvent绘图方法才能显示图片"></a>5.子控件需要实现父控件paintEvent绘图方法才能显示图片</h3><h3 id="6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"><a href="#6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递" class="headerlink" title="6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"></a>6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</h3><h3 id="7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"><a href="#7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用" class="headerlink" title="7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"></a>7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.setParent(None)</span><br></pre></td></tr></table></figure>
+<h3 id="5-子控件需要实现父控件paintEvent绘图方法才能显示图片"><a href="#5-子控件需要实现父控件paintEvent绘图方法才能显示图片" class="headerlink" title="5.子控件需要实现父控件paintEvent绘图方法才能显示图片"></a>5.子控件需要实现父控件paintEvent绘图方法才能显示图片</h3><h3 id="6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"><a href="#6-当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递" class="headerlink" title="6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递"></a>6.当子控件截取了点击事件后在点击事件里面调用父控件点击事件进行事件传递</h3><h3 id="7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"><a href="#7-父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用" class="headerlink" title="7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用"></a>7.父控件去掉子控件不是用“deleteLater”，这个方法只是在界面上去掉子控件，实际上内存中还存在，用sip的“deleter”方法删除也不安全，会删掉不应该删除的，查看源码发现，源码里面是用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.setParent(None)</span><br></pre></td></tr></table></figure>
 
 <p>来删除控件的，这样内存中的地址才会被回收</p>
-<h3 id="8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><a href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数" class="headerlink" title="8.在“main”函数里面可以获取软件存在的路径及外部传入的参数"></a>8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.argv[0]//软件打开路径</span><br><span class="line">sys.arvg[1]//外部传入参数</span><br></pre></td></tr></table></figure>
-
+<h3 id="8-在“main”函数里面可以获取软件存在的路径及外部传入的参数"><a href="#8-在“main”函数里面可以获取软件存在的路径及外部传入的参数" class="headerlink" title="8.在“main”函数里面可以获取软件存在的路径及外部传入的参数"></a>8.在“main”函数里面可以获取软件存在的路径及外部传入的参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sys.argv[0]//软件打开路径</span><br><span class="line">sys.arvg[1]//外部传入参数</span><br></pre></td></tr></table></figure>
 
         </section>
 
@@ -162,13 +162,13 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/10/14/2019/PyQt4坑集合（二）/">http://axibreaking.ml/2019/10/14/2019/PyQt4坑集合（二）/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/10/14/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%BA%8C%EF%BC%89/">http://axibreaking.ml/2019/10/14/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%BA%8C%EF%BC%89/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
                         <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
                 
@@ -181,11 +181,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/技术/"># 技术</a>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
                         <a href="/tags/PyQt4/"># PyQt4</a>
                     
-                        <a href="/tags/坑集合/"># 坑集合</a>
+                        <a href="/tags/%E5%9D%91%E9%9B%86%E5%90%88/"># 坑集合</a>
                     
                         
                 </span>
@@ -198,10 +198,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/10/15/2019/PyQt之分离多线程/">PyQt之分离多线程</a>
+                <a class="prev" rel="prev" href="/2019/10/15/2019/PyQt%E4%B9%8B%E5%88%86%E7%A6%BB%E5%A4%9A%E7%BA%BF%E7%A8%8B/">PyQt之分离多线程</a>
             
             
-            <a class="next" rel="next" href="/2019/10/14/2019/PyQt项目小结/">阶段小结（五）</a>
+            <a class="next" rel="next" href="/2019/10/14/2019/PyQt%E9%A1%B9%E7%9B%AE%E5%B0%8F%E7%BB%93/">阶段小结（五）</a>
             
         </section>
 

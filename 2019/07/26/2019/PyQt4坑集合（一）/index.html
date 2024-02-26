@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 
 
-<title>PyQt4坑集合（一） | AXI</title>
+<title>PyQt4坑集合（一） | AXIHOME</title>
 
 
 
@@ -29,7 +30,7 @@
     
 
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 <body>
     <div class="wrapper">
         <header>
@@ -97,7 +98,7 @@
         <div id="post-toc" class="post-toc">
             <span class="post-toc-title">catalogue</span>
             <div class="post-toc-content">
-                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体"><span class="toc-text">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去"><span class="toc-text">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PyQt4在默认配置下-setStyleSheet不支持jpg，只能用png图片"><span class="toc-text">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python的中文加变量打印"><span class="toc-text">4.python的中文加变量打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python的中文加变量转为字符串"><span class="toc-text">5.python的中文加变量转为字符串</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-QT%E8%AE%BE%E8%AE%A1%E5%B8%88%E5%81%9A%E7%9A%84UI%E6%96%87%E4%BB%B6%E5%9C%A8%E8%BD%AC%E6%8D%A2%E4%B8%BAPY%E6%96%87%E4%BB%B6%E6%97%B6%E5%87%BA%E9%94%99%EF%BC%8C%E6%9C%89%E5%8F%AF%E8%83%BD%E6%98%AF%E5%9C%A8UI%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%AD%97%E4%BD%93%E4%B8%BA%E4%B8%AD%E6%96%87%E5%AD%97%E4%BD%93"><span class="toc-text">1.QT设计师做的UI文件在转换为PY文件时出错，有可能是在UI文件中的字体为中文字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-qt%E8%AE%BE%E8%AE%A1%E5%B8%88%E9%87%8C%E9%9D%A2%E6%98%BE%E7%A4%BA%E7%9A%84%E5%9B%BE%E7%89%87%E5%9C%A8UI%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BApy%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8Cqrc%E6%96%87%E4%BB%B6%E4%B9%9F%E8%A6%81%E8%BD%AC%E6%8D%A2%E4%B8%BApy%E6%96%87%E4%BB%B6%EF%BC%8C%E7%9B%B4%E6%8E%A5import%E8%BF%9B%E5%8E%BB"><span class="toc-text">2.qt设计师里面显示的图片在UI文件转换为py文件后，qrc文件也要转换为py文件，直接import进去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-PyQt4%E5%9C%A8%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%B8%8B-setStyleSheet%E4%B8%8D%E6%94%AF%E6%8C%81jpg%EF%BC%8C%E5%8F%AA%E8%83%BD%E7%94%A8png%E5%9B%BE%E7%89%87"><span class="toc-text">3.PyQt4在默认配置下,setStyleSheet不支持jpg，只能用png图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-python%E7%9A%84%E4%B8%AD%E6%96%87%E5%8A%A0%E5%8F%98%E9%87%8F%E6%89%93%E5%8D%B0"><span class="toc-text">4.python的中文加变量打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python%E7%9A%84%E4%B8%AD%E6%96%87%E5%8A%A0%E5%8F%98%E9%87%8F%E8%BD%AC%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">5.python的中文加变量转为字符串</span></a></li></ol>
             </div>
         </div>
     
@@ -150,13 +151,13 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/">http://axibreaking.ml/2019/07/26/2019/PyQt4坑集合（一）/</a></span>
+                        <span><a href="http://axibreaking.ml/2019/07/26/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89/">http://axibreaking.ml/2019/07/26/2019/PyQt4%E5%9D%91%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%80%EF%BC%89/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
                         <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
                 
                 
@@ -169,11 +170,11 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/技术/"># 技术</a>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/"># 技术</a>
                     
                         <a href="/tags/PyQt4/"># PyQt4</a>
                     
-                        <a href="/tags/坑集合/"># 坑集合</a>
+                        <a href="/tags/%E5%9D%91%E9%9B%86%E5%90%88/"># 坑集合</a>
                     
                         
                 </span>
@@ -186,10 +187,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/08/06/2019/PyQt4之网络请求及图片加载/">PyQt4之网络请求及图片加载</a>
+                <a class="prev" rel="prev" href="/2019/08/06/2019/PyQt4%E4%B9%8B%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%8F%8A%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD/">PyQt4之网络请求及图片加载</a>
             
             
-            <a class="next" rel="next" href="/2019/05/06/2019/阶段小结（四）/">阶段小结（四）</a>
+            <a class="next" rel="next" href="/2019/05/06/2019/%E9%98%B6%E6%AE%B5%E5%B0%8F%E7%BB%93%EF%BC%88%E5%9B%9B%EF%BC%89/">阶段小结（四）</a>
             
         </section>
 

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>iOS之静态库生成 | AXIHOME</title>
+
+
+
+    <link rel="icon" href="/favicon.png">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">阿西&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">阿西&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div id="post-toc" class="post-toc">
+            <span class="post-toc-title">catalogue</span>
+            <div class="post-toc-content">
+                <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-text">1.创建项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">2.编写代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-text">3.构建静态库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9F%A5%E6%89%BE%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-text">4.查找库文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%88%9B%E5%BB%BApodspec%E6%96%87%E4%BB%B6"><span class="toc-text">5.创建podspec文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%8F%90%E4%BA%A4%E5%88%B0%E4%BB%93%E5%BA%93"><span class="toc-text">6.提交到仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%8F%91%E5%B8%83%E5%88%B0CocoaPods"><span class="toc-text">7.发布到CocoaPods</span></a></li></ol>
+            </div>
+        </div>
+    
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">iOS之静态库生成</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Xin</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 11, 2023&nbsp;&nbsp;17:04:36</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/iOS/">iOS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <section class="post-content">
+            <p>最近在公司接手了主要项目，做了公司自己SDK库的开发，也大概总结了一些步骤，就此记录下，另外，先介绍下静态库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">关键特点：</span><br><span class="line"></span><br><span class="line">编译时链接： 静态库在编译时被完全链接到应用程序中。这意味着库的代码被复制到应用程序的可执行文件中，使得应用程序在运行时不再依赖于原始的库文件。</span><br><span class="line"></span><br><span class="line">独立性： 由于静态库在编译时被嵌入到应用程序中，应用程序在其他系统上运行时无需依赖外部库的存在。这增加了应用程序的独立性和可移植性。</span><br><span class="line"></span><br><span class="line">多语言支持： 静态库通常可以用于多种编程语言，只要它们符合相应的二进制接口（ABI）。这使得开发者能够在不同的语言中共享和重用代码。</span><br><span class="line"></span><br><span class="line">快速执行： 由于静态库的代码被直接嵌入到应用程序中，其执行速度可能比动态库稍快，因为无需在运行时进行额外的加载和链接操作。</span><br><span class="line"></span><br><span class="line">使用场景：</span><br><span class="line"></span><br><span class="line">模块化开发： 静态库促进了代码的模块化和重用，允许开发者将常用的功能打包成库，方便在不同项目中共享。</span><br><span class="line"></span><br><span class="line">独立发布： 开发者可以将自己的功能或工具以静态库的形式发布，供其他开发者集成到他们的应用程序中。</span><br><span class="line"></span><br><span class="line">性能优化： 静态库的使用可以在一定程度上提高应用程序的性能，尤其是对于小型项目或特定场景。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>静态库搭建，并且上传到pod，主要分为以下几步：<br>1.创建项目；<br>2.编写代码；<br>3.构建静态库；<br>4.查找库文件；<br>5.创建podspec文件；<br>6.提交到GitHub<br>7.发布到CocoaPods</p>
+<h3 id="1-创建项目"><a href="#1-创建项目" class="headerlink" title="1.创建项目"></a>1.创建项目</h3><p>首先，我们要打开Xcode，并创建了一个新的项目。在项目模板选择界面，注意要选择了”Framework &amp; Library”，然后点击”Static Library”。这样就创建了一个静态库的项目。</p>
+<h3 id="2-编写代码"><a href="#2-编写代码" class="headerlink" title="2.编写代码"></a>2.编写代码</h3><p>接下来就是正常的编写自己项目的代码，并且调试，注意这里既然时一个库的话，就要好好注意下规范，可复用性，代码安全等东西。</p>
+<h3 id="3-构建静态库"><a href="#3-构建静态库" class="headerlink" title="3.构建静态库"></a>3.构建静态库</h3><p>完成代码编写后，在xcode中，选择项目的 scheme，并将设备设置为“Generic iOS Device”。然后，点击 Xcode 的 Product -&gt; Build 功能来构建静态库。</p>
+<h3 id="4-查找库文件"><a href="#4-查找库文件" class="headerlink" title="4.查找库文件"></a>4.查找库文件</h3><p>构建成功后，前往Xcode的DerivedData目录中查找生成的静态库文件。通常情况下，它们位于<code>~/Library/Developer/Xcode/DerivedData/YourLibrary-xxxx/Build/Products/Debug-iphoneos/YourLibrary.a</code>路径下。</p>
+<h3 id="5-创建podspec文件"><a href="#5-创建podspec文件" class="headerlink" title="5.创建podspec文件"></a>5.创建podspec文件</h3><p>接下来，在项目的根目录创建了一个<code>.podspec</code>文件。这个文件包含了有关我的库的信息，例如名称、版本、作者等，并指定了静态库文件的路径。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></span><br><span class="line">  s.name         = <span class="string">&#x27;YourLibrary&#x27;</span></span><br><span class="line">  s.version      = <span class="string">&#x27;1.0.0&#x27;</span></span><br><span class="line">  s.summary      = <span class="string">&#x27;A brief description of YourLibrary.&#x27;</span></span><br><span class="line">  s.homepage     = <span class="string">&#x27;https://github.com/yourusername/YourLibrary&#x27;</span></span><br><span class="line">  s.license      = &#123; <span class="symbol">:type</span> =&gt; <span class="string">&#x27;MIT&#x27;</span>, <span class="symbol">:file</span> =&gt; <span class="string">&#x27;LICENSE&#x27;</span> &#125;</span><br><span class="line">  s.author       = &#123; <span class="string">&#x27;Your Name&#x27;</span> =&gt; <span class="string">&#x27;youremail@example.com&#x27;</span> &#125;</span><br><span class="line">  s.source       = &#123; <span class="symbol">:git</span> =&gt; <span class="string">&#x27;https://github.com/yourusername/YourLibrary.git&#x27;</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</span><br><span class="line"></span><br><span class="line">  s.ios.deployment_target = <span class="string">&#x27;12.0&#x27;</span></span><br><span class="line"></span><br><span class="line">  s.source_files  = <span class="string">&#x27;YourLibrary/**/*.swift&#x27;</span> <span class="comment"># 调整以符合你的文件结构</span></span><br><span class="line">  s.public_header_files = <span class="string">&#x27;YourLibrary/**/*.h&#x27;</span> <span class="comment"># 调整以符合你的文件结构</span></span><br><span class="line"></span><br><span class="line">  s.frameworks = <span class="string">&#x27;UIKit&#x27;</span> <span class="comment"># 如果你的库需要，添加框架</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 这里可以添加其他规格，比如依赖项</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-提交到仓库"><a href="#6-提交到仓库" class="headerlink" title="6.提交到仓库"></a>6.提交到仓库</h3><p>将项目提交到了GitHub或类似的代码仓库，要检查下<code>.podspec</code>文件也包含在其中。</p>
+<h3 id="7-发布到CocoaPods"><a href="#7-发布到CocoaPods" class="headerlink" title="7.发布到CocoaPods"></a>7.发布到CocoaPods</h3><p>最后，运行以下命令将我的库发布到了CocoaPods：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod trunk register your@email.com <span class="string">&#x27;Your Name&#x27;</span> --description=<span class="string">&#x27;Your description&#x27;</span></span><br><span class="line">pod trunk push YourLibrary.podspec</span><br></pre></td></tr></table></figure>
+
+<p>到这里为止，其他人就可以通过在他们的项目中添加<code>pod &#39;YourLibrary&#39;</code>来下载和使用我们的第三方库了。</p>
+<p>大概就是这些，整体梳理下来的大概流程，具体实践中肯定还会遇到很多问题，就要自己一个个解决了。</p>
+
+        </section>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Xin</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://axibreaking.ml/2023/07/11/2023/iOS%E4%B9%8B%E9%9D%99%E6%80%81%E5%BA%93%E7%94%9F%E6%88%90/">http://axibreaking.ml/2023/07/11/2023/iOS%E4%B9%8B%E9%9D%99%E6%80%81%E5%BA%93%E7%94%9F%E6%88%90/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/iOS/"># iOS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/10/28/2022/iOS%E4%B9%8B%E5%BC%80%E5%B1%8F%E9%A1%B5%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E9%97%AE%E9%A2%98/">iOS之开屏页图片加载问题</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Xin | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+</html>
